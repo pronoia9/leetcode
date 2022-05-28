@@ -101,29 +101,27 @@
 //
 // Runtime:       104 ms,   faster than   89.81%
 // Memory Usage:  48 MB,    less than     22.08%
-{
-  var addTwoNumbers = function (l1, l2) {
-    let arr1 = [],
-      arr2 = [];
+export default function addTwoNumbers(l1, l2) {
+  let arr1 = [],
+    arr2 = [];
 
-    while (l1) {
-      arr1.push(l1.val);
-      l1 = l1.next;
-    }
-    while (l2) {
-      arr2.push(l2.val);
-      l2 = l2.next;
-    }
+  while (l1) {
+    arr1.push(l1.val);
+    l1 = l1.next;
+  }
+  while (l2) {
+    arr2.push(l2.val);
+    l2 = l2.next;
+  }
 
-    let result = (BigInt(arr1.reverse().join('')) + BigInt(arr2.reverse().join(''))).toString().split('').reverse().join('');
+  let result = (BigInt(arr1.reverse().join('')) + BigInt(arr2.reverse().join(''))).toString().split('').reverse().join('');
 
-    let l3 = new ListNode(result[0]);
-    let l3Next = l3;
-    for (let i = 1; i < result.length; i++) {
-      l3Next.next = new ListNode(result[i]);
-      l3Next = l3Next.next;
-    }
-    return l3;
-  };
+  let l3 = new ListNode(result[0]);
+  let l3Next = l3;
+  for (let i = 1; i < result.length; i++) {
+    l3Next.next = new ListNode(result[i]);
+    l3Next = l3Next.next;
+  }
+  return l3;
 }
 // ************************************************************************************************************************ //
