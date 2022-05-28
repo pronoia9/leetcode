@@ -37,17 +37,15 @@
 //
 // Runtime:       66 ms,    faster than   94.10%
 // Memory Usage:  43.1 MB,  less than     32.96%
-{
-  let twoSum = (numbers, target) => {
-    let search = new Map();
+export default function twoSum(numbers, target) {
+  let search = new Map();
 
-    for (let i = 0; i < numbers.length; i++) {
-      if (search.has(target - numbers[i])) {
-        return [search.get(target - numbers[i]), i];
-      }
-      search.set(numbers[i], i);
+  for (let i = 0; i < numbers.length; i++) {
+    if (search.has(target - numbers[i])) {
+      return [search.get(target - numbers[i]), i];
     }
-    return [];
-  };
+    search.set(numbers[i], i);
+  }
+  return [];
 }
 // ************************************************************************************************************************ //
