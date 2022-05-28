@@ -5,8 +5,8 @@
 // Open brackets must be closed in the correct order.
 // https://leetcode.com/problems/valid-parentheses/
 // validParentheses
-// Runtime: 84 ms, faster than 47.53% of JavaScript online submissions for Valid Parentheses.
-// Memory Usage: 42.4 MB, less than 47.32% of JavaScript online submissions for Valid Parentheses.
+// Runtime:       84 ms,    faster than 47.53%   |   102 ms,  faster than 23.88%   |   55 ms,   faster than 98.43%
+// Memory Usage:  42.4 MB,  less than   47.32%   |   42.1 MB, less than   68.42%   |   41.8 MB, less than   90.14%
 export default function validParentheses(str) {
   const map = new Map(Object.entries({ '}': '{', ']': '[', ')': '(' }));
   const openTags = ['(', '[', '{'];
