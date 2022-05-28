@@ -6,7 +6,7 @@
 // Runtime:       181 ms,   faster than   22.06%
 // Memory Usage:  47.9 MB,  less than     24.95%
 {
-  var addTwoNumbers = function (l1, l2) {
+  let addTwoNumbers = function (l1, l2) {
     let arr1 = [],
       arr2 = [];
 
@@ -40,7 +40,7 @@
 // Runtime:       142 ms,   faster than   51.59%
 // Memory Usage:  47.8 MB,  less than     29.53%
 {
-  var addTwoNumbers = function (l1, l2) {
+  let addTwoNumbers = function (l1, l2) {
     let arr1 = [],
       arr2 = [];
 
@@ -70,7 +70,7 @@
 // Runtime:       117 ms,   faster than   74.25%
 // Memory Usage:  48.6 MB,  less than     14.69%
 {
-  var addTwoNumbers = function (l1, l2) {
+  let addTwoNumbers = function (l1, l2) {
     let arr1 = [],
       arr2 = [];
 
