@@ -4,8 +4,17 @@
 // Return k after placing the final result in the first k slots of nums.
 // Do not allocate extra space for another array. You must do this by modifying the input array in-place with O(1) extra memory.
 // https://leetcode.com/problems/remove-duplicates-from-sorted-array/
-//
-let removeDuplicates = function (nums) {};
+// 
+// Runtime:       115 ms,   faster than 48.41%   |   133 ms,  faster than 36.09%   |   116 ms,  faster than 47.72%
+// Memory Usage:  44.2 MB,  less than   95.50%   |   45 MB,   less than   37.54%   |   44.5 MB, less than   82.00%
+const removeDuplicates = (nums) => {
+  return nums.reduce((prev, curr, idx) => {
+    nums.splice(idx, nums.lastIndexOf(curr) - idx);
+    !prev.includes(curr) && (prev += curr);
+    return prev;
+  }, `${nums[0]}`).length;
+};
 
-console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+// console.log(removeDuplicates([1, 1, 2]));
+// console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
 // ************************************************************************************************************************ //
