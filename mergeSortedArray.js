@@ -6,14 +6,23 @@
 //
 // Runtime:      96 ms,   faster than 25.13%   |   68 ms,   faster than 76.46%   |   108 ms,  faster than 12.95%   |   79 ms,   faster than 51.54%
 // Memory Usage: 42.3 MB, less than   28.54%   |   42.3 MB, less than   28.54%   |   42.4 MB, less than   28.54%   |   42.2 MB, less than   55.42%
-
-export default function merge (nums1, m, nums2, n) {
-  for (let i = m; i < nums1.length; i++) {
-    nums1[i] = nums2[i - m];
-  }
-  nums1.sort((a, b) => a - b);
-};
-
+{
+  const merge = (nums1, m, nums2, n) => {
+    for (let i = m; i < nums1.length; i++) {
+      nums1[i] = nums2[i - m];
+    }
+    nums1.sort((a, b) => a - b);
+  };
+}
+//
+// Runtime:      88 ms,   faster than 36.85%   |   111 ms,  faster than 10.94%   |   101 ms,  faster than 19.04%   |   95 ms,   faster than 26.41%
+// Memory Usage: 41.9 MB, less than   85.49%   |   42.3 MB, less than   42.57%   |   42.1 MB, less than   68.20%   |   42.1 MB, less than   68.20%
+{
+  const merge = (nums1, m, nums2, n) => {
+    nums1.splice(m, n, ...nums2);
+    nums1.sort((a, b) => a - b);
+  };
+}
 // ************************************************************************************************************************ //
 
 // merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3);
