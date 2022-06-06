@@ -4,11 +4,17 @@
 // Increment the large integer by one and return the resulting array of digits.
 // https://leetcode.com/problems/plus-one/
 //
+// Runtime:      60 ms,   faster than 92.98%
+// Memory Usage: 41.8 MB, less than   86.76%
+export default function plusOne(digits) {
+  return Array.from(`${BigInt(digits.join('')) + BigInt(1)}`, (n) => parseInt(n));
+}
+//
 // Runtime:       95 ms,   faster than 23.96%   |   76 ms,   faster than 54.78%   |   108 ms,  faster than 10.37%
 // Memory Usage:  42.6 MB, less than    5.20%   |   42.3 MB,  less than  18.13%   |   42.3 MB, less than   32.87%
 {
   const plusOne = (digits) => {
-    return Array.from((BigInt(digits.join('')) + BigInt(1)).toString(), (n) => BigInt(n));
+    return Array.from(`${BigInt(digits.join('')) + BigInt(1)}`, (n) => BigInt(n));
   };
 }
 //
@@ -17,10 +23,53 @@
 {
   const plusOne = (digits) => {
     return Array.from(
-      `${digits.reduce((prev, curr, idx) => (prev += BigInt(curr.toString() + '0'.repeat(digits.length - idx - 1))), BigInt(0)) +
-        BigInt(1)}`,
+      `${
+        digits.reduce((prev, curr, idx) => (prev += BigInt(curr.toString() + '0'.repeat(digits.length - idx - 1))), BigInt(0)) +
+        BigInt(1)
+      }`,
       (n) => parseInt(n)
     );
+  };
+}
+//
+// Runtime:      82 ms,   faster than 43.23%   |   84 ms,   faster than 40.15%   |   58 ms,   faster than 95.08%
+// Memory Usage: 42.3 MB, less than   32.87%   |   42.1 MB, less than   44.98%   |   42.6 MB, less than    5.20%
+{
+  const plusOne = (digits) => {
+    return Array.from(
+      `${
+        digits.reduce((prev, curr, idx) => (prev += BigInt(`${curr}` + '0'.repeat(digits.length - idx - 1))), BigInt(0)) + BigInt(1)
+      }`,
+      (n) => parseInt(n)
+    );
+  };
+}
+//
+//
+//
+{
+  const plusOne = (digits) => {
+    let acc = BigInt(1);
+
+    for (let i = 0; i < digits.length; i++) {
+      acc += BigInt(`${digits[i]}` + '0'.repeat(digits.length - i - 1));
+    }
+
+    return Array.from(`${acc}`, (n) => parseInt(n));
+  };
+}
+//
+//
+//
+{
+  const plusOne = (digits) => {
+    let acc = BigInt(1);
+
+    for (let i = 0, d = '0'.repeat(digits.length - i - 1); i < digits.length; i++, d = d.slice(0, d.length - 1)) {
+      acc += BigInt(`${digits[i]}` + d);
+    }
+
+    return Array.from(`${acc}`, (n) => parseInt(n));
   };
 }
 // ************************************************************************************************************************ //
