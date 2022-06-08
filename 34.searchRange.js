@@ -4,9 +4,11 @@
 // You must write an algorithm with O(log n) runtime complexity.
 // https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 //
-// Runtime:       
-// Memory Usage:  
-const searchRange = (nums, target) => {};
+// Runtime:       121 ms,  faster than  5.89%
+// Memory Usage:  42.9 MB, less than   28.62%
+const searchRange = (nums, target) => {
+  return [nums.indexOf(target), nums.lastIndexOf(target)];
+};
 // ************************************************************************************************************************ //
 
 console.log(searchRange([5, 7, 7, 8, 8, 10], 8));
