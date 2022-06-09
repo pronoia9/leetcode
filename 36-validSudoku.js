@@ -14,7 +14,6 @@
 //
 const isValidSudoku = (board) => {
   for (let row = 0; row < 9; row++) {
-    // reset maps
     let rowMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
     let colMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
     let boxMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
@@ -27,24 +26,17 @@ const isValidSudoku = (board) => {
       // set colMap per col
       board[col][row] !== '.' && colMap.set(board[col][row], colMap.get(board[col][row]) + 1);
 
-      // box rows 0-2, 3-5, 6-8 | cols 0-2, 3-5, 6-8
-      // set boxMap
+      // set boxMap => box rows 0-2, 3-5, 6-8 | cols 0-2, 3-5, 6-8
       if (row === 0 || row === 3 || row === 6) {
         board[row];
       }
-      // box check
-      for (let [key, value] of boxMap.entries()) {
-        if (value > 1) return false;
-      }
     }
+    // box check
+    for (let [key, value] of boxMap.entries()) { if (value > 1) return false; }
     // col check
-    for (let [key, value] of colMap.entries()) {
-      if (value > 1) return false;
-    }
+    for (let [key, value] of colMap.entries()) { if (value > 1) return false; }
     // row check
-    for (let [key, value] of rowMap.entries()) {
-      if (value > 1) return false;
-    }
+    for (let [key, value] of rowMap.entries()) { if (value > 1) return false; }
 
     console.log(rowMap);
     console.log(colMap);
