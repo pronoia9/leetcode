@@ -26,10 +26,6 @@ const isValidSudoku = (board) => {
 
       // set colMap per col
       board[col][row] !== '.' && colMap.set(board[col][row], colMap.get(board[col][row]) + 1);
-      // col check
-      for (let [key, value] of colMap.entries()) {
-        if (value > 1) return false;
-      }
 
       // box rows 0-2, 3-5, 6-8 | cols 0-2, 3-5, 6-8
       // set boxMap
@@ -40,6 +36,10 @@ const isValidSudoku = (board) => {
       for (let [key, value] of boxMap.entries()) {
         if (value > 1) return false;
       }
+    }
+    // col check
+    for (let [key, value] of colMap.entries()) {
+      if (value > 1) return false;
     }
     // row check
     for (let [key, value] of rowMap.entries()) {
