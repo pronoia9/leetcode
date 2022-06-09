@@ -13,11 +13,6 @@
 // board[i][j] is a digit 1-9 or '.'.
 //
 const isValidSudoku = (board) => {
-  // checks are
-  // board[first_line]
-  // board[all_lines][0]
-  // board[line_to_line+2][0-2]
-
   for (let i = 0; i < 9; i++) {
     let row = board[i];
     // reset maps
