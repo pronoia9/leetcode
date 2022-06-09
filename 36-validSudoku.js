@@ -22,10 +22,9 @@ const isValidSudoku = (board) => {
 
     // board[i][j] cols
     for (let col = 0; col < 9; col++) {
-      // ROW  CHECK + Add
-      // check the rowNums for a duplicate
+      // ROW  CHECK + ADD
+      // check the rowNums array for a duplicate, return false if we already have the same number, if not add the number to rowNums array
       if (rowNums.includes(board[row][col])) return false;
-      // else add the number to rowNums
       board[row][col] !== '.' && rowNums.push(board[row][col]);
 
       // COL  CHECK + ADD
@@ -58,6 +57,19 @@ console.log(
     ['6', '.', '.', '1', '9', '5', '.', '.', '.'],
     ['.', '9', '8', '.', '.', '.', '.', '6', '.'],
     ['8', '.', '.', '.', '6', '.', '.', '.', '3'],
+    ['4', '.', '.', '8', '.', '3', '.', '.', '1'],
+    ['7', '.', '.', '.', '2', '.', '.', '.', '6'],
+    ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
+    ['.', '.', '.', '4', '1', '9', '.', '.', '5'],
+    ['.', '.', '.', '.', '8', '.', '.', '7', '9'],
+  ])
+);
+console.log(
+  isValidSudoku([
+    ['8', '3', '.', '.', '7', '.', '.', '.', '.'],
+    ['6', '.', '.', '1', '9', '5', '.', '.', '.'],
+    ['.', '9', '8', '.', '.', '.', '.', '6', '.'],
+    ['.', '.', '.', '.', '6', '.', '.', '.', '3'],
     ['4', '.', '.', '8', '.', '3', '.', '.', '1'],
     ['7', '.', '.', '.', '2', '.', '.', '.', '6'],
     ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
