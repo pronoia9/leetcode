@@ -11,8 +11,45 @@
 // board.length == 9
 // board[i].length == 9
 // board[i][j] is a digit 1-9 or '.'.
-// 
-const isValidSudoku = (board) => { };
+//
+const isValidSudoku = (board) => {
+  // checks are
+  // board[first_line]
+  // board[all_lines][0]
+  // board[line_to_line+2][0-2]
+
+  let row, col, box;
+  let rowMap, colMap, boxMap;
+
+  for (let i = 0; i < 9; i++) {
+    // reset maps
+    rowMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
+    colMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
+    boxMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
+
+    // set rowMap per row
+    for (let j = 0; j < 9; j++) {
+      board[i][j] !== '.' && rowMap.set(board[i][j], rowMap.get(board[i][j]) + 1);
+    }
+    // row check
+    for (let [key, value] of rowMap.entries()) {
+      if (value > 1) return false;
+    }
+
+    // set colMap per col
+    board[i][0] !== '.' && colMap.set(board[i][0], colMap.get(board[i][0]) + 1);
+    // col check
+    for (let [key, value] of colMap.entries()) {
+      if (value > 1) return false;
+    }
+    
+    console.log(rowMap);
+    console.log(colMap);
+    // console.log(boxMap);
+  }
+
+  return true;
+};
 // ************************************************************************************************************************ //
 
 console.log(
