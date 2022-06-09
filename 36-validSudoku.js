@@ -14,15 +14,17 @@
 //
 const isValidSudoku = (board) => {
   for (let i = 0; i < 9; i++) {
-    let row = board[i];
     // reset maps
     let rowMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
     let colMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
     let boxMap = new Map(Object.entries({ 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 }));
 
-    // set rowMap per row
+    // board[i][j] cols
     for (let j = 0; j < 9; j++) {
-      row[j] !== '.' && rowMap.set(row[j], rowMap.get(row[j]) + 1);
+      // set rowMap per row
+      board[i][j] !== '.' && rowMap.set(board[i][j], rowMap.get(board[i][j]) + 1);
+
+      // box rows 0-2, 3-5, 6-8 | cols 0-2, 3-5, 6-8
     }
     // row check
     for (let [key, value] of rowMap.entries()) {
@@ -30,7 +32,7 @@ const isValidSudoku = (board) => {
     }
 
     // set colMap per col
-    row[0] !== '.' && colMap.set(row[0], colMap.get(row[0]) + 1);
+    board[i][0] !== '.' && colMap.set(board[i][0], colMap.get(board[i][0]) + 1);
     // col check
     for (let [key, value] of colMap.entries()) {
       if (value > 1) return false;
