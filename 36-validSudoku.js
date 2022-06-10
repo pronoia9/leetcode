@@ -12,30 +12,56 @@
 // board[i].length == 9
 // board[i][j] is a digit 1-9 or '.'.
 //
+// Runtime:      127 ms,  faster than 32.15%7   |   127 ms,  faster than 32.15%   |   89 ms,   faster than 77.19%   |   121 ms,  faster than 37.85%
+// Memory Usage: 44.4 MB, less than   94.86%7   |   45.3 MB, less than   56.82%   |   44.7 MB, less than   80.44%   |   44.8 MB, less than   75.78%
+{
+  const isValidSudoku = (board) => {
+    for (let row = 0; row < 9; row++) {
+      // reset per row
+      let rowNums = [];
+      let colNums = [];
+      let boxNums = [];
+
+      // board[i][j] cols
+      for (let col = 0; col < 9; col++) {
+        // ROW  CHECK + ADD
+        // check the rowNums array for a duplicate, return false if we already have the same number, if not add the number to rowNums array
+        if (rowNums.includes(board[row][col])) return false;
+        board[row][col] !== '.' && rowNums.push(board[row][col]);
+
+        // COL  CHECK + ADD
+        // reversing row/col simplifies checking this as in board[row=5] itll check board[col=0][row=5], board[col=1][row=5], and so on
+        if (colNums.includes(board[col][row])) return false;
+        board[col][row] !== '.' && colNums.push(board[col][row]);
+
+        // BOX  CHECK + ADD  (0-2, 3-5, 6-8)
+        let b = board[3 * Math.floor(row / 3) + Math.floor(col / 3)][3 * (row % 3) + (col % 3)];
+        // console.log('row:', row, '  col:', col, '  box:', '['+(3 * Math.floor(row / 3) + Math.floor(col / 3))+']'+'['+(3 * (row % 3) + (col % 3))+']')
+        if (boxNums.includes(b)) return false;
+        b !== '.' && boxNums.push(b);
+      }
+    }
+
+    return true;
+  };
+}
+//
+// Runtime:      100 ms,  faster than 62.09%   |   102 ms,  faster than 59.84%   |   110 ms,  faster than 50.38%   |   97 ms,   faster than 66.27%   |   82 ms,   faster than 87.44%
+// Memory Usage: 44.5 MB, less than   89.16%   |   44.4 MB, less than   92.29%   |   44.6 MB, less than   85.13%   |   44.6 MB, less than   89.16%   |   44.3 MB, less than   94.86%
 const isValidSudoku = (board) => {
   for (let row = 0; row < 9; row++) {
-    // reset per row
-    let rowNums = [];
-    let colNums = [];
-    let boxNums = [];
+    let rowNums = new Set(), colNums = new Set(), boxNums = new Set();
 
-    // board[i][j] cols
     for (let col = 0; col < 9; col++) {
-      // ROW  CHECK + ADD
-      // check the rowNums array for a duplicate, return false if we already have the same number, if not add the number to rowNums array
-      if (rowNums.includes(board[row][col])) return false;
-      board[row][col] !== '.' && rowNums.push(board[row][col]);
+      if (rowNums.has(board[row][col])) return false;
+      board[row][col] !== '.' && rowNums.add(board[row][col]);
 
-      // COL  CHECK + ADD
-      // reversing row/col simplifies checking this as in board[row=5] itll check board[col=0][row=5], board[col=1][row=5], and so on
-      if (colNums.includes(board[col][row])) return false;
-      board[col][row] !== '.' && colNums.push(board[col][row]);
+      if (colNums.has(board[col][row])) return false;
+      board[col][row] !== '.' && colNums.add(board[col][row]);
 
-      // BOX  CHECK + ADD  (0-2, 3-5, 6-8)
       let b = board[3 * Math.floor(row / 3) + Math.floor(col / 3)][3 * (row % 3) + (col % 3)];
-      // console.log('row:', row, '  col:', col, '  box:', '['+(3 * Math.floor(row / 3) + Math.floor(col / 3))+']'+'['+(3 * (row % 3) + (col % 3))+']')
-      if (boxNums.includes(b)) return false;
-      b !== '.' && boxNums.push(b);
+      if (boxNums.has(b)) return false;
+      b !== '.' && boxNums.add(b);
     }
   }
 
