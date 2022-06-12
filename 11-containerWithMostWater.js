@@ -5,27 +5,6 @@
 // Notice that you may not slant the container.
 // https://leetcode.com/problems/container-with-most-water/
 //
-// const maxArea = (height) => {
-//   return height.reduce((prev, curr, idx) => {
-//     for (let i = idx + 1; i < height.length; i++) {
-//       const area = (i - idx) * (curr > height[i] ? height[i] : curr);
-//       prev < area && (prev = area);
-//     }
-//     return prev;
-//   }, 0);
-// };
-//
-// const maxArea = (height) => {
-//   return height.reduce((prev, curr, idx) => {
-//     let area = height.slice(idx + 1).reduce((p, c, i) => {
-//       let a = (i + 1) * (curr > c ? c : curr);
-//       return p < a ? a : p;
-//     }, 0);
-//     return prev < area ? area : prev;
-//   }, 0);
-// };
-//
-//
 // Runtime:      163 ms, faster than 6.85%
 // Memory Usage:  49 MB, less than   97.18%
 {
@@ -55,6 +34,26 @@ const maxArea = (height) => {
   }
   return area;
 };
+//
+// const maxArea = (height) => {
+//   return height.reduce((prev, curr, idx) => {
+//     for (let i = idx + 1; i < height.length; i++) {
+//       const area = (i - idx) * (curr > height[i] ? height[i] : curr);
+//       prev < area && (prev = area);
+//     }
+//     return prev;
+//   }, 0);
+// };
+//
+// const maxArea = (height) => {
+//   return height.reduce((prev, curr, idx) => {
+//     let area = height.slice(idx + 1).reduce((p, c, i) => {
+//       let a = (i + 1) * (curr > c ? c : curr);
+//       return p < a ? a : p;
+//     }, 0);
+//     return prev < area ? area : prev;
+//   }, 0);
+// };
 // ************************************************************************************************************************ //
 console.log(maxArea([2, 3, 4, 5, 18, 17, 6]));
 // console.log(maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]));
