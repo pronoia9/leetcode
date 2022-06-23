@@ -4,7 +4,12 @@
 // Given the integer array candyType of length n, return the maximum number of different types of candies she can eat if she only eats n / 2 of them.
 // https://leetcode.com/problems/distribute-candies/
 // 
+// Runtime:      3380 ms, faster than 5.55%   |   3568 ms, faster than 5.55%
+// Memory Usage: 51.8 MB, less than  98.89%   |   52.1 MB, less than  93.89%
 const distributeCandies = (candyType) => {
+  const diet = candyType.length / 2;
+  const totalTypes = candyType.reduce((types, curr) => (!types.includes(curr) && types.push(curr), types), []).length;
+  return diet <= totalTypes ? diet : totalTypes;
 };
 // ************************************************************************************************************************ //
 
