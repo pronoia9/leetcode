@@ -4,15 +4,19 @@
 //
 // Runtime:      109 ms, faster than 47.44%   |   111 ms, faster than 44.50%   |   106 ms,  faster than 51.45%
 // Memory Usage:  48 MB, less than   93.63%   |    48 MB, less than   93.63%   |   48.2 MB, less than   73.49%
-const reverseWords = (s) => {
-  const arr = s.split(' ');
-
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = arr[i].split('').reverse().join('');
-  }
-
-  return arr.join(' ');
-};
+{
+  const reverseWords = (s) => {
+    const arr = s.split(' ');
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].split('').reverse().join('');
+    }
+    return arr.join(' ');
+  };
+}
+//
+// Runtime:        115 ms, faster than 39.34%   |     73 ms, faster than 96.78%
+// Memory Usage:  48.2 MB, less than   82.42%   |   48.1 MB, less than   89.69%
+const reverseWords = (s) => s.split(' ').map((str) => str.split('').reverse().join('')).join(' ');
 // ************************************************************************************************************************ //
 
 console.log(reverseWords("Let's take LeetCode contest"));
