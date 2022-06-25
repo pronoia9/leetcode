@@ -16,11 +16,17 @@
 //
 // Runtime:        228 ms, faster than 28.89%   |   166 ms,  faster than 60.83%   |   119 ms,  faster than 93.89%
 // Memory Usage:  56.2 MB, less than   66.39%   |   56.3 MB, less than   45.28%   |   56.4 MB, less than   36.11%
-const distributeCandies = (candyType) => {
-  const diet = candyType.length / 2;
-  const totalTypes = candyType.reduce((types, curr) => types.add(curr), new Set()).size;
-  return diet <= totalTypes ? diet : totalTypes;
-};
+{
+  const distributeCandies = (candyType) => {
+    const diet = candyType.length / 2;
+    const totalTypes = candyType.reduce((types, curr) => types.add(curr), new Set()).size;
+    return diet <= totalTypes ? diet : totalTypes;
+  };
+}
+//
+// Runtime:        248 ms, faster than 28.69%   |   177 ms,  faster than 59.50%   |   176 ms,  faster than 60.06%
+// Memory Usage:  56.4 MB, less than   36.61%   |   56.3 MB, less than   45.63%   |   56.3 MB, less than   55.31%
+const distributeCandies = (candyType) => Math.min(candyType.length / 2, new Set(candyType).size);
 // ************************************************************************************************************************ //
 
 console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
