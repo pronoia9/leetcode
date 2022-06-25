@@ -2,7 +2,16 @@
 // Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
 // https://leetcode.com/problems/reverse-words-in-a-string-iii/
 //
+// Runtime:      109 ms, faster than 47.44%   |   111 ms, faster than 44.50%   |   106 ms,  faster than 51.45%
+// Memory Usage:  48 MB, less than   93.63%   |    48 MB, less than   93.63%   |   48.2 MB, less than   73.49%
 const reverseWords = (s) => {
+  const arr = s.split(' ');
+
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = arr[i].split('').reverse().join('');
+  }
+
+  return arr.join(' ');
 };
 // ************************************************************************************************************************ //
 
