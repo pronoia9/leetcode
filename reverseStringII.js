@@ -5,10 +5,25 @@
 //
 // Runtime:         99 ms, faster than 41.04%   |    102 ms, faster than 36.10%   |     97 ms, faster than 44.16%
 // Memory Usage:  45.7 MB, less than   34.29%   |   45.2 MB, less than   41.04%   |   45.8 MB, less than   34.29%
+{
+  const reverseStr = (s, k) => {
+    const arr = s.split('');
+    for (let i = 0; i < arr.length; i++) {
+      if (i % (k * 2) === 0) arr.splice(i, k, ...s.slice(i, i + k).split('').reverse())
+    }
+    return arr.join('');
+  };
+}
+//
+// Runtime:         77 ms, faster than 75.46%
+// Memory Usage:  45.1 MB, less than   43.01%
 const reverseStr = (s, k) => {
+  // if k is bigger than s lenght, the whole string will be reversed so no need for everything down below
+  if (k > s.length) return s.split('').reverse().join('');
+
   const arr = s.split('');
-  for (let i = 0; i < arr.length; i++) {
-    if (i % (k * 2) === 0) arr.splice(i, k, ...s.slice(i, i + k).split('').reverse())
+  for (let i = 0; i < arr.length; i += 2 * k) {
+    arr.splice(i, k, ...s.slice(i, i + k).split('').reverse())
   }
   return arr.join('');
 };
