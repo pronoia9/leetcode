@@ -5,12 +5,44 @@
 // You are also given an integer truckSize, which is the maximum number of boxes that can be put on the truck. You can choose any boxes to put on the truck as long as the number of boxes does not exceed truckSize.
 // Return the maximum total number of units that can be put on the truck.
 //
+// Runtime:      118 ms, faster than 50.90%   |   138 ms,  faster than 32.04%   |   87 ms,   faster than 84.88%
+// Memory Usage:  45 MB, less than   40.57%   |   44.3 MB, less than   76.95%   |   44.5 MB, less than   69.31%
 const maximumUnits = (boxTypes, truckSize) => {
+  boxTypes.sort((a, b) => b[1] - a[1]);
+
+  let boxes = 0, units = 0;
+  for (let i = 0; i < boxTypes.length && boxes < truckSize; i++) {
+    for (let j = 0; j < boxTypes[i][0] && boxes < truckSize; j++) {
+      boxes++;
+      units += boxTypes[i][1];
+    }
+  }
+
+  return units;
 };
 // ************************************************************************************************************************ //
 
-console.log(maximumUnits([[1,3],[2,2],[3,1]], 4));
-console.log(maximumUnits([[5,10],[2,5],[4,7],[3,9]], 10));
+console.log(
+  maximumUnits(
+    [
+      [1, 3],
+      [2, 2],
+      [3, 1],
+    ],
+    4
+  )
+);
+console.log(
+  maximumUnits(
+    [
+      [5, 10],
+      [2, 5],
+      [4, 7],
+      [3, 9],
+    ],
+    10
+  )
+);
 
 // Example 1:
 // Input: boxTypes = [[1,3],[2,2],[3,1]], truckSize = 4
