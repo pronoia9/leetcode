@@ -7,15 +7,33 @@
 //
 // Runtime:      118 ms, faster than 50.90%   |   138 ms,  faster than 32.04%   |   87 ms,   faster than 84.88%
 // Memory Usage:  45 MB, less than   40.57%   |   44.3 MB, less than   76.95%   |   44.5 MB, less than   69.31%
+{
+  const maximumUnits = (boxTypes, truckSize) => {
+    boxTypes.sort((a, b) => b[1] - a[1]);
+
+    let boxes = 0,
+      units = 0;
+    for (let i = 0; i < boxTypes.length && boxes < truckSize; i++) {
+      for (let j = 0; j < boxTypes[i][0] && boxes < truckSize; j++) {
+        boxes++;
+        units += boxTypes[i][1];
+      }
+    }
+
+    return units;
+  };
+}
+//
+// Runtime:       96 ms,   faster than 75.00%   |    108 ms, faster than 62.05%   |     91 ms, faster than 81.10%
+// Memory Usage:  44.9 MB, less than   45.83%   |   44.1 MB, less than   88.54%   |   44.4 MB, less than   76.93%
 const maximumUnits = (boxTypes, truckSize) => {
   boxTypes.sort((a, b) => b[1] - a[1]);
 
-  let boxes = 0, units = 0;
-  for (let i = 0; i < boxTypes.length && boxes < truckSize; i++) {
-    for (let j = 0; j < boxTypes[i][0] && boxes < truckSize; j++) {
-      boxes++;
-      units += boxTypes[i][1];
-    }
+  let units = 0;
+  for (let i = 0; truckSize && i < boxTypes.length; i++) {
+    const amount = Math.min(boxTypes[i][0], truckSize);
+    units += boxTypes[i][1] * amount;
+    truckSize -= amount;
   }
 
   return units;
