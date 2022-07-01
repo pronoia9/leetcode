@@ -22,27 +22,8 @@ const maximumUnits = (boxTypes, truckSize) => {
 };
 // ************************************************************************************************************************ //
 
-console.log(
-  maximumUnits(
-    [
-      [1, 3],
-      [2, 2],
-      [3, 1],
-    ],
-    4
-  )
-);
-console.log(
-  maximumUnits(
-    [
-      [5, 10],
-      [2, 5],
-      [4, 7],
-      [3, 9],
-    ],
-    10
-  )
-);
+console.log(maximumUnits([[1, 3], [2, 2], [3, 1]], 4));
+console.log(maximumUnits([[5, 10], [2, 5], [4, 7], [3, 9]],10));
 
 // Example 1:
 // Input: boxTypes = [[1,3],[2,2],[3,1]], truckSize = 4
