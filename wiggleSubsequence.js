@@ -25,10 +25,10 @@ const wiggleMaxLength = (nums) => {
 // ************************************************************************************************************************ //
 
 console.log(wiggleMaxLength([1, 7, 4, 9, 2, 5]));
-// console.log(wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8]));
-// console.log(wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9]));
-// console.log(wiggleMaxLength([84]));
-// console.log(wiggleMaxLength([0, 0]));
+console.log(wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8]));
+console.log(wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+console.log(wiggleMaxLength([84]));
+console.log(wiggleMaxLength([0, 0]));
 
 // Example 1:
 // Input: nums = [1,7,4,9,2,5]
