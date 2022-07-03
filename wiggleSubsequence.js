@@ -5,14 +5,30 @@
 // A subsequence is obtained by deleting some elements (possibly zero) from the original sequence, leaving the remaining elements in their original order.
 // Given an integer array nums, return the length of the longest wiggle subsequence of nums.
 // https://leetcode.com/problems/wiggle-subsequence/
-// 
-const wiggleMaxLength = (nums) => { 
+//
+// Runtime:         69 ms, faster than 83.21%
+// Memory Usage:  41.6 MB, less than   84.67%
+const wiggleMaxLength = (nums) => {
+  let count = 1, prev, curr;
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    curr = Math.sign(nums[i + 1] - nums[i]);
+
+    if (curr !== 0) {
+      if (prev !== curr) count++;
+      prev = curr;
+    }
+  }
+
+  return count;
 };
 // ************************************************************************************************************************ //
 
 console.log(wiggleMaxLength([1, 7, 4, 9, 2, 5]));
-console.log(wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8]));
-console.log(wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+// console.log(wiggleMaxLength([1, 17, 5, 10, 13, 15, 10, 5, 16, 8]));
+// console.log(wiggleMaxLength([1, 2, 3, 4, 5, 6, 7, 8, 9]));
+// console.log(wiggleMaxLength([84]));
+// console.log(wiggleMaxLength([0, 0]));
 
 // Example 1:
 // Input: nums = [1,7,4,9,2,5]
