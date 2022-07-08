@@ -4,7 +4,19 @@
 // Return an integer array answer where answer[0] is the number of candies in the box that Alice must exchange, and answer[1] is the number of candies in the box that Bob must exchange. If there are multiple answers, you may return any one of them. It is guaranteed that at least one answer exists.
 // https://leetcode.com/problems/fair-candy-swap/
 //
-const fairCandySwap = (aliceSizes, bobSizes) => {};
+const fairCandySwap = (aliceSizes, bobSizes) => {
+  const totalAlice = aliceSizes.reduce((acc, curr) => (acc += curr), 0);
+  const totalBob = bobSizes.reduce((acc, curr) => (acc += curr), 0);
+  const difference = (totalAlice - totalBob) >> 1;
+  const set = new Set(aliceSizes);
+  for (const candy of bobSizes) {
+    if (set.has(candy + difference)) return [candy + difference, candy];
+  }
+
+  console.log(totalAlice);
+  console.log(totalBob);
+  console.log(difference);
+};
 // ************************************************************************************************************************ //
 
 console.log(fairCandySwap([1, 1], [2, 2]));
