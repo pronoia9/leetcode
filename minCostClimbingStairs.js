@@ -5,6 +5,25 @@
 // https://leetcode.com/problems/min-cost-climbing-stairs/
 //
 const minCostClimbingStairs = (cost) => {
+  let first = cost[0], second = cost[1];
+  const top = cost.length;
+  if (top <= 2) return Math.min(first, second);
+
+  for (let i = 2; i < top; i++) {
+    const curr = Math.min(first, second) + cost[i];
+
+    // console.log(curr);
+    // console.log(first);
+    // console.log(second);
+
+    first = second;
+    second = curr;
+
+    // console.log(first);
+    // console.log(second);
+  }
+
+  return Math.min(first, second);
 };
 // ************************************************************************************************************************ //
 
