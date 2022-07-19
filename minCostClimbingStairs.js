@@ -4,26 +4,21 @@
 // Return the minimum cost to reach the top of the floor.
 // https://leetcode.com/problems/min-cost-climbing-stairs/
 //
+// Runtime:      110 ms, faster than 31.22%   |    108 ms, faster than 34.45%
+// Memory Usage:  42 MB, less than   97.05%   |   42.3 MB, less than   91.88%
 const minCostClimbingStairs = (cost) => {
-  let first = cost[0], second = cost[1];
-  const top = cost.length;
-  if (top <= 2) return Math.min(first, second);
+   if (cost.length === 1) return 0;
+   if (cost.length === 2) return Math.min(cost[0], cost[1]);
 
-  for (let i = 2; i < top; i++) {
-    const curr = Math.min(first, second) + cost[i];
+   let costOne = cost[0], costTwo = cost[1];
 
-    // console.log(curr);
-    // console.log(first);
-    // console.log(second);
+   for (let i = 2; i < cost.length; i++) {
+     const currCost = Math.min(costOne, costTwo) + cost[i];
+     costOne = costTwo;
+     costTwo = currCost;
+   }
 
-    first = second;
-    second = curr;
-
-    // console.log(first);
-    // console.log(second);
-  }
-
-  return Math.min(first, second);
+   return Math.min(costOne, costTwo);
 };
 // ************************************************************************************************************************ //
 
@@ -48,3 +43,7 @@ console.log(minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]));
 // - Pay 1 and climb two steps to reach index 9.
 // - Pay 1 and climb one step to reach the top.
 // The total cost is 6.
+
+// Constraints:
+// 2 <= cost.length <= 1000
+// 0 <= cost[i] <= 999
