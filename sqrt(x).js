@@ -4,8 +4,8 @@
 // Note: You are not allowed to use any built-in exponent function or operator, such as pow(x, 0.5) or x ** 0.5.
 // https://leetcode.com/problems/sqrtx/
 //
-// Runtime:         78 ms, faster than 92.28%
-// Memory Usage:  43.8 MB, less than   53.38%
+// Runtime:         78 ms, faster than 92.28%   |    128 ms, faster than 37.89%   |     91 ms, faster than 79.64%
+// Memory Usage:  43.8 MB, less than   53.38%   |   43.2 MB, less than   83.80%   |   43.6 MB, less than   62.45%
 const mySqrt = (x) => Math.floor(Math.sqrt(x));
 //
 // Runtime:        150 ms, faster than 22.82%
