@@ -4,20 +4,56 @@
 // Return the head of the merged linked list.
 // https://leetcode.com/problems/merge-two-sorted-lists/
 // Definition for singly-linked list.
+function ListNode(val, next) { (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next); }
 const list = (arr) => {
-  function ListNode(val, next) { (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next); }
-  let list = new ListNode(null, null), curr = list;
+  let list = new ListNode(), curr = list;
   for (let i = 0; i < arr.length; i++) {
     curr.val = arr[i];
     if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
   }
-  console.log(list);
   return list;
 };
 //
-var mergeTwoLists = function (list1, list2) {
-  console.log(list1);
-  console.log(list2);
+// Runtime:        126 ms, faster than 17.11%
+// Memory Usage:  44.4 MB, less than   24.40%
+{
+  const mergeTwoLists = (list1, list2) => {
+    let list = new ListNode(), curr = list;
+
+    while (list1 && list2) {
+      if (list1.val > list2.val) {
+        curr.next = list2;
+        list2 = list2.next;
+      } else {
+        curr.next = list1;
+        list1 = list1.next;
+      }
+      curr = curr.next;
+    }
+    curr.next = list1 || list2;
+
+    return list.next;
+  };
+}
+//
+// Runtime:        129 ms, faster than 14.64%   |     98 ms, faster than 54.91%   |     84 ms, faster than 74.39%
+// Memory Usage:  44.5 MB, less than   16.54%   |   44.1 MB, less than   59.74%   |   44.3 MB, less than   47.29%
+const mergeTwoLists = (list1, list2) => {
+  let list = new ListNode(),
+    curr = list;
+
+  while (list1 || list2) {
+    if ((list1 && !list2) || (list1 && list2 && (list1.val < list2.val || list1.val === list2.val))) {
+      curr.next = list1;
+      list1 = list1.next;
+    } else if ((!list1 && list2) || (list1 && list2 && list2.val < list1.val)) {
+      curr.next = list2;
+      list2 = list2.next;
+    }
+    curr = curr.next;
+  }
+
+  return list.next;
 };
 // ************************************************************************************************************************ //
 
