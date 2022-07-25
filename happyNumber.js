@@ -6,8 +6,33 @@
 // Those numbers for which this process ends in 1 are happy.
 // Return true if n is a happy number, and false if not.
 // https://leetcode.com/problems/happy-number/
-// 
-const isHappy = (n) => {  
+//
+// Runtime:         99 ms, faster than 52.85%
+// Memory Usage:  44.3 MB, less than   36.96%
+{
+  const sumOfSquares = (n) => `${n}`.split('').reduce((acc, curr) => (acc += Math.pow(curr, 2)), 0);
+  const isHappy = (n) => {
+    const set = new Set();
+    while (n !== 1) {
+      if (!set.has(n)) set.add(n);
+      else return false;
+      n = sumOfSquares(n);
+    }
+    return n === 1;
+  };
+}
+//
+// Runtime:         78 ms, faster than 81.46%   |     77 ms, faster than 83.06%   |   71 ms, faster than 90.27%
+// Memory Usage:  44.5 MB, less than   26.18%   |   44.5 MB, less than   21.38%   |   44 MB, less than   47.44%
+const sumOfSquares = (n) => `${n}`.split('').reduce((acc, curr) => (acc += Math.pow(curr, 2)), 0);
+const isHappy = (n) => {
+  const set = new Set();
+  while (n !== 1) {
+    n = sumOfSquares(n);
+    if (!set.has(n)) set.add(n);
+    else return false;
+  }
+  return n === 1;
 };
 // ************************************************************************************************************************ //
 
@@ -29,3 +54,5 @@ console.log(isHappy(2));
 
 // Constraints:
 // 1 <= n <= 231 - 1
+
+// https://leetcode.com/problems/happy-number/discuss/488750/Javascript-greater-full-explanation-no-strings-uses-Set()
