@@ -20,7 +20,9 @@ const hasCycle = (head) => {
 //
 // ************************************************************************************************************************ //
 
-console.log(());
+console.log(hasCycle(list([3,2,0,-4]), 1));
+console.log(hasCycle(list([1,2]), 0));
+console.log(hasCycle(list([1]), -1));
 
 // Example 1:
 // Input: head = [3,2,0,-4], pos = 1
