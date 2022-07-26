@@ -19,10 +19,28 @@ const hasCycle = (head) => {
 
   return false;
 };
+//
+// Runtime:         97 ms, faster than 66.11%   |     86 ms, faster than 81.65%
+// Memory Usage:  45.7 MB, less than   14.52%   |   45.9 MB, less than   12.90%
+{
+  const hasCycle = (head) => {
+    let pos = new Set();
+
+    while (head && !pos.has(head)) {
+      pos.add(head);
+      head = head.next;
+    }
+
+    return head !== null;
+  };
+}
 // ************************************************************************************************************************ //
 
-let cl1 = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4)))), cl2 = new ListNode(1, new ListNode(2)), cl3 = new ListNode(1);
-let c1 = cl1.next, c2 = cl2;
+let cl1 = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4)))),
+  cl2 = new ListNode(1, new ListNode(2)),
+  cl3 = new ListNode(1);
+let c1 = cl1.next,
+  c2 = cl2;
 cl1.next.next.next.next = c1;
 cl2.next = c2;
 
