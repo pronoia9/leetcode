@@ -4,25 +4,31 @@
 // Return true if there is a cycle in the linked list. Otherwise, return false.
 // https://leetcode.com/problems/linked-list-cycle/
 //
-function ListNode(val, next) {(this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next);}
-const list = (arr) => {
-  let list = new ListNode(),
-    curr = list;
-  for (let i = 0; i < arr.length; i++) {
-    curr.val = arr[i];
-    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
+function ListNode(val, next) { (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next); }
+//
+// Runtime:         93 ms, faster than 71.46%   |     83 ms, faster than 86.26%
+// Memory Usage:  46.1 MB, less than    8.27%   |   45.8 MB, less than   14.52%
+const hasCycle = (head) => {
+  let pos = new Set();
+
+  while (head) {
+    if (pos.has(head)) return true;
+    pos.add(head);
+    head = head.next;
   }
-  return list;
+
+  return false;
 };
-//
-const hasCycle = (head) => {  
-}; 
-//
 // ************************************************************************************************************************ //
 
-console.log(hasCycle(list([3,2,0,-4]), 1));
-console.log(hasCycle(list([1,2]), 0));
-console.log(hasCycle(list([1]), -1));
+let cl1 = new ListNode(3, new ListNode(2, new ListNode(0, new ListNode(-4)))), cl2 = new ListNode(1, new ListNode(2)), cl3 = new ListNode(1);
+let c1 = cl1.next, c2 = cl2;
+cl1.next.next.next.next = c1;
+cl2.next = c2;
+
+console.log(hasCycle(cl1));
+console.log(hasCycle(cl2));
+console.log(hasCycle(cl3));
 
 // Example 1:
 // Input: head = [3,2,0,-4], pos = 1
