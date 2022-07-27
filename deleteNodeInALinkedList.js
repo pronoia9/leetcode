@@ -5,14 +5,24 @@
 //
 function ListNode(val, next) { (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next); }
 //
+// Runtime:         81 ms, faster than 81.67%   |     79 ms, faster than 84.25%     |   78 ms, faster than 85.71%
+// Memory Usage:  44.5 MB, less than   24.27%   |   44.6 MB, less than   24.27%   |   44.1 MB, less than   81.05%
 const deleteNode = (node) => {  
+  node.val = node.next.val;
+  node.next = node.next.next;
 };
 // ************************************************************************************************************************ //
 const ls1 = new ListNode(4, new ListNode(5, new ListNode(1, new ListNode(9, null)))), ls2 = new ListNode(4, new ListNode(5, new ListNode(1, new ListNode(9, null))));
 const del1 = ls1.next, del2 = ls2.next.next;
 
+console.log(ls1);
+console.log(ls2);
+
 console.log(deleteNode(del1));
 console.log(deleteNode(del2));
+
+console.log(ls1);
+console.log(ls2);
 
 // Example 1:
 // Input: head = [4,5,1,9], node = 5
