@@ -11,13 +11,24 @@ const list = (arr) => {
   return list;
 };
 //
-const reverseList = (head) => {  
+// Runtime:       69 ms, faster than 91.06%
+// Memory Usage:  44 MB, less than   72.62%
+const reverseList = (head) => {
+  if (!head) return head;
+  let list;
+  while (head) {
+    list = new ListNode(head.val, list);
+    head = head.next;
+  }
+  return list;
 };
 // ************************************************************************************************************************ //
 
-console.log(reverseList(list([1, 2, 3, 4, 5])));
-console.log(reverseList(list([1, 2])));
-console.log(reverseList(list([])));
+const l1 = list([1, 2, 3, 4, 5]), l2 = list([1, 2]), l3 = list([]);
+
+console.log(reverseList(l1));
+console.log(reverseList(l2));
+console.log(reverseList(l3));
 
 // Example 1:
 // Input: head = [1,2,3,4,5]
