@@ -2,7 +2,51 @@
 // Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
 // https://leetcode.com/problems/missing-number/
 //
-const missingNumber = (nums) => {};
+// Runtime:        417 ms, faster than 12.12%   |    416 ms, faster than 12.18%
+// Memory Usage:  44.3 MB, less than   67.85%   |   43.9 MB, less than   89.30%
+{
+  const missingNumber = (nums) => {
+    const max = nums.length;
+    for (let i = 0; i <= max; i++) {
+      if (!nums.includes(i)) return i;
+    }
+    return max + 1;
+  };
+}
+//
+// Runtime:        419 ms, faster than 11.96%   |   471 ms, faster than 8.73%
+// Memory Usage:  44.2 MB, less than   76.58%   |    44 MB, less than  89.30%
+{
+  const missingNumber = (nums) => {
+    const max = nums.length;
+    for (let i = 0; i <= max; i++) {
+      if (!nums.includes(i)) return i;
+    }
+    return max + 1;
+  };
+}
+//
+// Runtime:        596 ms, faster than 5.00%   |    652 ms, faster than  5.00%
+// Memory Usage:  43.8 MB, less than  93.85%   |   44.1 MB, less than   83.86%
+{
+  const missingNumber = (nums) => {
+    const map = new Map(Object.entries({ yes: [...nums], no: nums.length }));
+    for (let i = 0; i < nums.length; i++) {
+      !map.get('yes').includes(i) && map.set('no', i);
+    }
+    return map.get('no');
+  };
+}
+//
+// Runtime:         87 ms, faster than 75.45%
+// Memory Usage:  44.2 MB, less than   76.58%
+const missingNumber = (nums) => {
+  const numbers = new Array(nums.length + 1).fill(false);
+  for (let i = 0; i < nums.length; i++) {
+    numbers[nums[i]] = true;
+  }
+  return numbers.indexOf(false);
+};
 // ************************************************************************************************************************ //
 
 console.log(missingNumber([3, 0, 1]));
