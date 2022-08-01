@@ -16,8 +16,8 @@ const isPalindrome = (head) => {
 // ************************************************************************************************************************ //
 const l1 = list([1, 2, 2, 1]), l2 = list([1, 2]);
 
-console.log(l1);
-console.log(l2);
+console.log(isPalindrome(l1));
+console.log(isPalindrome(l2));
 
 // Example 1:
 // Input: head = [1,2,2,1]
