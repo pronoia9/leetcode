@@ -5,8 +5,9 @@
 // In Java, the compiler represents the signed integers using 2's complement notation. Therefore, in Example 2 above, the input represents the signed integer -3 and the output represents the signed integer -1073741825.
 // https://leetcode.com/problems/reverse-bits/
 // 
-const reverseBits = (n) => {  
-};
+// Runtime:        119 ms, faster than 27.83%   |    103 ms, faster than 51.40%   |   99 ms, faster than 58.37%
+// Memory Usage:  44.6 MB, less than   11.78%   |   44.2 MB, less than   50.31%   |   44 MB, less than   59.77%
+const reverseBits = (n) => parseInt(n.toString(2).split('').reverse().join('').padEnd(32, '0'), 2);
 // ************************************************************************************************************************ //
 
 console.log(reverseBits(00000010100101000001111010011100));
