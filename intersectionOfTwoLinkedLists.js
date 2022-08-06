@@ -15,9 +15,12 @@
 //
 // https://leetcode.com/problems/intersection-of-two-linked-lists/
 //
-function ListNode(val, next) { (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next); }
+function ListNode(val, next) {
+  (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next);
+}
 const list = (arr) => {
-  let list = new ListNode(), curr = list;
+  let list = new ListNode(),
+    curr = list;
   for (let i = 0; i < arr.length; i++) {
     curr.val = arr[i];
     if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
@@ -25,19 +28,39 @@ const list = (arr) => {
   return list;
 };
 //
-const getIntersectionNode = (headA, headB) => {};
+// Runtime: 1139 ms, faster than 6.01%
+// Memory Usage: 49.9 MB, less than 62.24%
+{
+  const getIntersectionNode = (headA, headB) => {
+    let a = headA, b = headB;
+    while (a) {
+      while (b) {
+        if (a === b) return a;
+        b = b.next;
+      }
+      b = headB;
+      a = a.next;
+    }
+    return null;
+  };
+}
+//
+// Runtime:        118 ms, faster than 70.19%   |    131 ms, faster than 56.55%   |     97 ms, faster than 90.77%
+// Memory Usage:  50.4 MB, less than   36.03%   |   49.9 MB, less than   68.46%   |   49.4 MB, less than   92.84%
+const getIntersectionNode = (headA, headB) => {
+  let a = headA,
+    b = headB;
+  while (a !== b) {
+    a = !a ? headB : a.next;
+    b = !b ? headA : b.next;
+  }
+  return a;
+};
 // ************************************************************************************************************************ //
 
-const l1a = new ListNode(4, new ListNode(1, new ListNode(8, new ListNode(4, new ListNode(5)))));
-const l1b = new ListNode(5, new ListNode(6, new ListNode(1, new ListNode(8, new ListNode(4, new ListNode(5))))));
-const l2a = new ListNode(1, new ListNode(9, new ListNode(1, new ListNode(2, new ListNode(4)))));
-const l2b = new ListNode(3, new ListNode(2, new ListNode(4)));
-const l3a = new ListNode(2, new ListNode(6, new ListNode(4)));
-const l3b = new ListNode(1, new ListNode(5));
-
-console.log(getIntersectionNode(l1a, l1b));
-console.log(getIntersectionNode(l2a, l2b));
-console.log(getIntersectionNode(l3a, l3b));
+console.log(getIntersectionNode(list([4, 1, 8, 4, 5]), list([5, 6, 1, 8, 4, 5])));
+// console.log(getIntersectionNode(list([1, 9, 1, 2, 4]), list([3, 2, 4])));
+// console.log(getIntersectionNode(list([2, 6, 4]), list([1, 5])));
 
 // Example 1:
 // https://assets.leetcode.com/uploads/2021/03/05/160_example_1_1.png
@@ -58,7 +81,7 @@ console.log(getIntersectionNode(l3a, l3b));
 // Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
 // Output: No intersection
 // Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be arbitrary values.
-// Explanation: The two lists do not intersect, so return null. 
+// Explanation: The two lists do not intersect, so return null.
 
 // Constraints:
 // The number of nodes of listA is in the m.
