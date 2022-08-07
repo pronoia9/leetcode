@@ -8,10 +8,16 @@
 const majorityElement = (nums) => {
   const map = new Map();
   for (let i = 0; i < nums.length; i++) {
-    map.set(nums[i], (map.get(nums[i]) + 1 || 1));
+    map.set(nums[i], map.get(nums[i]) + 1 || 1);
     if (map.get(nums[i]) >= nums.length / 2) return nums[i];
   }
 };
+//
+// Runtime:         63 ms, faster than 98.69%
+// Memory Usage:  45.6 MB, less than   22.17%
+{
+  const majorityElement = (nums) => nums.sort((a, b) => a - b)[Math.floor(nums.length / 2)];
+}
 // ************************************************************************************************************************ //
 
 console.log(majorityElement([3, 2, 3]));
