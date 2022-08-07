@@ -3,7 +3,15 @@
 // The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
 // https://leetcode.com/problems/majority-element/
 //
-const majorityElement = (nums) => {};
+// Runtime:        116 ms, faster than 30.00%   |   72 ms, faster than 92.29%   |     73 ms, faster than 90.90%
+// Memory Usage:  43.1 MB, less than   93.14%   |   44 MB, less than   53.82%   |   43.4 MB, less than   85.32%
+const majorityElement = (nums) => {
+  const map = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    map.set(nums[i], (map.get(nums[i]) + 1 || 1));
+    if (map.get(nums[i]) >= nums.length / 2) return nums[i];
+  }
+};
 // ************************************************************************************************************************ //
 
 console.log(majorityElement([3, 2, 3]));
