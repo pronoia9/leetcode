@@ -3,7 +3,9 @@
 // A defanged IP address replaces every period "." with "[.]".
 // https://leetcode.com/problems/defanging-an-ip-address/
 //
-const defangIPaddr = (address) => {};
+// Runtime:         68 ms, faster than 83.67%
+// Memory Usage:  41.9 MB, less than   57.87%
+const defangIPaddr = (address) => address.replaceAll('.', '[.]');
 // ************************************************************************************************************************ //
 
 console.log(defangIPaddr('1.1.1.1'));
