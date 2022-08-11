@@ -47,6 +47,21 @@ const maxDepth = (root) => {
   }
   return level;
 };
+//
+// Runtime:        115 ms, faster than 31.44%
+// Memory Usage:  47.6 MB, less than    5.29%
+const maxDepth = (root) => {
+  let stack = [[root, 1]], level = 0;
+  while (stack.length) {
+    const [node, depth] = [...stack.pop()];
+    if (node) {
+      level = Math.max(level, depth);
+      stack.push([node.left, depth + 1]);
+      stack.push([node.right, depth + 1]);
+    }
+  }
+  return level;
+};
 // ************************************************************************************************************************ //
 
 // console.log(maxDepth([3, 9, 20, null, null, 15, 7]));
