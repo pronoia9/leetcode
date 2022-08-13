@@ -8,7 +8,19 @@ function TreeNode(val, left, right) {
   this.right = right === undefined ? null : right;
 }
 //
-const isSymmetric = (root) => {};
+// Runtime:         87 ms, faster than 74.81%   |     83 ms, faster than 80.07%
+// Memory Usage:  44.6 MB, less than   58.13%   |   44.3 MB, less than   83.97%
+const isSymmetric = function (root) {
+  if (!root) return true;
+
+  const helper = (left, right) => {
+    if (!left || !right) return left === right;
+    if (left.val !== right.val) return false;
+    return helper(left.left, right.right) && helper(left.right, right.left);
+  };
+
+  return helper(root.left, root.right);
+};
 // **************************************************************************************************************** //
 
 // console.log(isSymmetric());
