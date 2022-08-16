@@ -5,12 +5,34 @@
 // You must write an algorithm with O(log n) runtime complexity.
 // https://leetcode.com/problems/search-in-rotated-sorted-array/
 //
-const search = (nums, target) => {};
+// Runtime:         97 ms, faster than 37.56%   |     95 ms, faster than 41.28%
+// Memory Usage:  42.3 MB, less than   32.06%   |   42.2 MB, less than   55.87%
+{
+  const search = (nums, target) => nums.indexOf(target);
+}
+//
+// Runtime:         79 ms, faster than 69.34%   |     69 ms, faster than 85.90%
+// Memory Usage:  42.3 MB, less than   32.06%   |   41.8 MB, less than   93.19%
+const search = (nums, target) => {
+  const start = target >= nums[0];
+  let pivot;
+
+  // IF START:  for (let i = 0; i < nums.length - 1; i++)
+  // IF !START: for (let i = nums.length - 1; i >= 0; i--)
+  for (let i = start ? 0 : nums.length - 1; (start ? i < nums.length : i >= 0) && !pivot; start ? i++ : i--) {
+    if (start && nums[i] > nums[i + 1]) pivot = i;
+    else if (!start && nums[i] > nums[i + 1]) pivot = i;
+    if (nums[i] === target) return i;
+  }
+  return -1;
+};
 // **************************************************************************************************************** //
 
 console.log(search([4, 5, 6, 7, 0, 1, 2], 0));
 console.log(search([4, 5, 6, 7, 0, 1, 2], 3));
 console.log(search([1], 0));
+console.log(search([4, 5, 6, 7, 0, 1, 2], 5));
+console.log(search([3, 5, 1], 3));
 
 // Example 1:
 // Input: nums = [4,5,6,7,0,1,2], target = 0
@@ -30,3 +52,5 @@ console.log(search([1], 0));
 // All values of nums are unique.
 // nums is an ascending array that is possibly rotated.
 // -104 <= target <= 104
+
+// https://www.youtube.com/watch?v=U8XENwh8Oy8
