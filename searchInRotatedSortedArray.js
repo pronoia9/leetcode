@@ -13,16 +13,41 @@
 //
 // Runtime:         79 ms, faster than 69.34%   |     69 ms, faster than 85.90%
 // Memory Usage:  42.3 MB, less than   32.06%   |   41.8 MB, less than   93.19%
-const search = (nums, target) => {
-  const start = target >= nums[0];
-  let pivot;
+{
+  const search = (nums, target) => {
+    const start = target >= nums[0];
+    let pivot;
 
-  // IF START:  for (let i = 0; i < nums.length - 1; i++)
-  // IF !START: for (let i = nums.length - 1; i >= 0; i--)
-  for (let i = start ? 0 : nums.length - 1; (start ? i < nums.length : i >= 0) && !pivot; start ? i++ : i--) {
-    if (start && nums[i] > nums[i + 1]) pivot = i;
-    else if (!start && nums[i] > nums[i + 1]) pivot = i;
-    if (nums[i] === target) return i;
+    // IF START:  for (let i = 0; i < nums.length - 1; i++)
+    // IF !START: for (let i = nums.length - 1; i >= 0; i--)
+    for (let i = start ? 0 : nums.length - 1; (start ? i < nums.length : i >= 0) && !pivot; start ? i++ : i--) {
+      if (start && nums[i] > nums[i + 1]) pivot = i;
+      else if (!start && nums[i] > nums[i + 1]) pivot = i;
+      if (nums[i] === target) return i;
+    }
+    return -1;
+  };
+}
+//
+// Binary Search
+// Runtime:        102 ms, faster than 29.02%   |     67 ms, faster than 88.39%   |    107 ms, faster than 21.51%
+// Memory Usage:  41.8 MB, less than   87.56%   |   42.1 MB, less than   55.87%   |   41.5 MB, less than   98.28%
+const search = (nums, target) => {
+  let left = 0, middle, right = nums.length - 1;
+  while (left <= right) {
+    middle = Math.floor((left + right) / 2);
+    // if we got a result
+    if (target == nums[middle]) return middle;
+    // left sorted portion
+    if (nums[left] <= nums[middle]) {
+      if (target > nums[middle] || target < nums[left]) left = middle + 1;
+      else right = middle - 1;
+    }
+    // right sorted poriton
+    else {
+      if (target < nums[middle] || target > nums[right]) right = middle - 1;
+      else left = middle + 1;
+    }
   }
   return -1;
 };
