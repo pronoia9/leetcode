@@ -4,6 +4,7 @@
 // You must solve it in O(n) time complexity.
 // https://leetcode.com/problems/kth-largest-element-in-an-array/
 //
+const { PriorityQueue, MinPriorityQueue, MaxPriorityQueue } = require('@datastructures-js/priority-queue');
 //
 {
   const findKthLargest = (nums, k) => nums.sort((a, b) => b - a)[k - 1];
@@ -19,9 +20,7 @@ const findKthLargest = (nums, k) => {
     for (let i = l; i < r; i++) {
       // if nums[i] is <= pivot, then swap at the p index
       if (nums[i] <= pivot) {
-        const temp = nums[p];
-        nums[p] = nums[i];
-        nums[i] = temp;
+        [nums[p], nums[i]] = [nums[i], nums[p]];
         // every time thers a swap, increment the p pointer and put it in the next position
         p += 1;
       }
@@ -36,11 +35,13 @@ const findKthLargest = (nums, k) => {
     else return nums[p];
   };
   return quickSelect(0, nums.length - 1);
-}
+};
 //
 // Runtime:        176 ms, faster than 31.68%
 // Memory Usage:  48.7 MB, less than   32.36%
-{ const findKthLargest = (nums, k) => quickSort(nums)[nums.length - k]; }
+{
+  const findKthLargest = (nums, k) => quickSort(nums)[nums.length - k];
+}
 //
 // const findKthLargest = (nums, k) => {
 //   const quickSort = (array) => {
@@ -51,6 +52,24 @@ const findKthLargest = (nums, k) => {
 //   }
 //   return quickSort(nums)[nums.length - k];
 // };
+//
+// Min Heap
+// Runtime:        283 ms, faster than 10.15%
+// Memory Usage:  66.2 MB, less than    5.07%
+{
+  const findKthLargest = (nums, k) => {
+    const minHeap = new MinPriorityQueue();
+    nums.forEach((num) => {
+      if (minHeap.size() < k) minHeap.enqueue(num);
+      else if (minHeap.front() < num) {
+        //.element
+        minHeap.dequeue();
+        minHeap.enqueue(num);
+      }
+    });
+    return minHeap.dequeue(); //.element
+  };
+}
 // **************************************************************************************************************** //
 
 console.log(findKthLargest([3, 2, 1, 5, 6, 4], 2));
@@ -70,13 +89,11 @@ console.log(findKthLargest([7, 6, 5, 4, 3, 2, 1], 2));
 // -104 <= nums[i] <= 104
 
 const swap = (arr, left, right) => {
-  const temp = arr[left];
-  arr[left] = arr[right];
-  arr[right] = temp;
+  [arr[left], arr[right]] = [arr[j], arr[r]];
 };
 
 const partition = (arr, left, right) => {
-  let pivot = arr[Math.floor((right + left) / 2)], //middle element
+  const pivot = arr[Math.floor((right + left) / 2)], //middle element
     i = left, //left pointer
     j = right; //right pointer
   while (i <= j) {
@@ -84,7 +101,7 @@ const partition = (arr, left, right) => {
     while (arr[j] > pivot) j--;
     if (i <= j) {
       //swap two elements
-      swap(i, j, arr);
+      swap(arr, i, j);
       i++;
       j--;
     }
