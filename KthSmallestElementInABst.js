@@ -2,34 +2,35 @@
 // Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.
 // https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 //
-import { PriorityQueue, MinPriorityQueue, MaxPriorityQueue } from '@datastructures-js/priority-queue';
 // Definition for a binary tree node.
 function TreeNode(val, left, right) {
-    this.val = (val===undefined ? 0 : val)
-    this.left = (left===undefined ? null : left)
-    this.right = (right===undefined ? null : right)
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
 }
 // @param {TreeNode} root
 // @param {number} k
 // @return {number}
 //
 // Recursive
-// 
-{const kthSmallest = (root, k) => {
-  const values = [];
-  (function dfs(node) {
-    // if values' length is not k, no need to keep going after to reach kth number
-    if (values.length != k) {
-      // go left first
-      if (node.left) dfs(node.left);
-      // finished going left, now start adding values
-      values.push(node.val);
-      // if theres a right, go right and repeat the process
-      if (node.right) dfs(node.right);
-    }
-  })(root);
-  return values;
-};}
+//
+{
+  const kthSmallest = (root, k) => {
+    const values = [];
+    (function dfs(node) {
+      // if values' length is not k, no need to keep going after to reach kth number
+      if (values.length != k) {
+        // go left first
+        if (node.left) dfs(node.left);
+        // finished going left, now start adding values
+        values.push(node.val);
+        // if theres a right, go right and repeat the process
+        if (node.right) dfs(node.right);
+      }
+    })(root);
+    return values;
+  };
+}
 //
 // Iterative
 // Runtime:        112 ms, faster than 50.10%   |     77 ms, faster than 93.88%
