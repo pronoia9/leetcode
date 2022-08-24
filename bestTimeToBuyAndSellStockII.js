@@ -4,7 +4,23 @@
 // Find and return the maximum profit you can achieve.
 // https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 //
-const maxProfit = (prices) => {};
+// O(n) time, O(1) space
+// Runtime:       75 ms, faster than 80.51%
+// Memory Usage:  42 MB, less than   86.84%
+{
+  const maxProfit = (prices) => {
+    let profit = 0;
+    for (let i = 0; i < prices.length - 1; i++) {
+      if (prices[i] < prices[i + 1]) profit += prices[i + 1] - prices[i];
+    }
+    return profit;
+  };
+}
+//
+// Runtime:        126 ms, faster than 10.13%   |     72 ms, faster than 85.11%   |     66 ms, faster than 92.86%
+// Memory Usage:  42.1 MB, less than   77.86%   |   42.7 MB, less than   16.81%   |   42.1 MB, less than   77.86%
+const maxProfit = (prices) =>
+  prices.reduce((profit, curr, i) => (profit += curr < prices[i + 1] ? prices[i + 1] - curr : 0), 0);
 // **************************************************************************************************************** //
 
 console.log(maxProfit([7, 1, 5, 3, 6, 4]));
