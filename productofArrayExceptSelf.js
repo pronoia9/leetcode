@@ -7,7 +7,23 @@
 // @param {number[]} nums
 // @return {number[]}
 //
-const productExceptSelf = (nums) => {};
+// https://www.youtube.com/watch?v=bNvIQI2wAjk
+// O(n) space, O(1) space (not counting result array)
+// Runtime:        115 ms, faster than 89.21%   |    119 ms, faster than 85.72%   |    102 ms, faster than 97.52%
+// Memory Usage:  55.3 MB, less than   37.21%   |   54.7 MB, less than   49.31%   |   54.7 MB, less than   49.31%
+const productExceptSelf = (nums) => {
+  const res = new Array(nums.length);
+  // store prefix
+  for (let i = 0, prefix = 1; i < nums.length; i++) (res[i] = prefix), (prefix *= nums[i]);
+  // get postfix
+  for (let i = nums.length - 1, postfix = 1; i >= 0; i--) (res[i] *= postfix), (postfix *= nums[i]);
+  return res;
+};
+//
+{
+  const productExceptSelf = (nums) =>
+    nums.map((num, idx) => (num = nums.reduce((prod, curr, i) => (prod *= idx !== i ? curr : 1), 1)));
+}
 // **************************************************************************************************************** //
 
 console.log(productExceptSelf([1, 2, 3, 4]));
