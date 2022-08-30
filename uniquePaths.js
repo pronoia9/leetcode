@@ -7,8 +7,22 @@
 // @param {number} m
 // @param {number} n
 // @return {number}
-// 
-const uniquePaths = (m, n) => {};
+//
+// DP
+// O(m * n) time  |  O(n) space
+// Runtime:         75 ms, faster than 76.78%   |     95 ms, faster than 40.33%
+// Memory Usage:  42.2 MB, less than   61.22%   |   41.8 MB, less than   89.56%
+const uniquePaths = (m, n) => {
+  let row = new Array(n).fill(1);
+  for (let i = 0; i < m - 1; i++) {
+    const rowAbove = new Array(n).fill(1);
+    for (let j = n - 2; j > -1; j--) {
+      rowAbove[j] = rowAbove[j + 1] + row[j];
+    }
+    row = rowAbove;
+  }
+  return row[0]
+};
 // **************************************************************************************************************** //
 
 console.log(uniquePaths(3, 7));
@@ -29,3 +43,5 @@ console.log(uniquePaths(3, 2));
 
 // Constraints:
 // 1 <= m, n <= 100
+
+// https://www.youtube.com/watch?v=IlEsdxuD4lY
