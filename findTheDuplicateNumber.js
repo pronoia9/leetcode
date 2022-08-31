@@ -7,7 +7,24 @@
 // @param {number[]} nums
 // @return {number}
 //
-const findDuplicate = (nums) => {};
+// O(n) time  |  O(1) space
+// Runtime:        142 ms, faster than 54.86%   |   130 ms, faster than 64.86%   |    134 ms, faster than 61.04%
+// Memory Usage:  50.1 MB, less than   59.57%   |    50 MB, less than   67.44%   |   49.6 MB, less than   90.51%
+const findDuplicate = (nums) => {
+  let slow = 0, fast = 0;
+  while (true) {
+    slow = nums[slow];
+    fast = nums[nums[fast]];
+    if (slow == fast) {
+      let slow2 = 0;
+      while (true) {
+        slow = nums[slow];
+        slow2 = nums[slow2];
+        if (slow == slow2) return slow;
+      }
+    }
+  }
+};
 // **************************************************************************************************************** //
 
 console.log(findDuplicate([1, 3, 4, 2, 2]));
@@ -30,3 +47,6 @@ console.log(findDuplicate([3, 1, 3, 4, 2]));
 // Follow up:
 // How can we prove that at least one duplicate number must exist in nums?
 // Can you solve the problem in linear runtime complexity?
+
+// https://www.youtube.com/watch?v=wjYnzkAhcNk
+// https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
