@@ -6,21 +6,21 @@
 // int[] shuffle() Returns a random shuffling of the array.
 // https://leetcode.com/problems/shuffle-an-array/
 //
-/** @param {number[]} nums **/
-//
-const Solution = (nums) => {};
-//
-//
-/** @return {number[]} **/
-//
-Solution.prototype.reset = function() {};
-//
-//
-/** @return {number[]} **/
-//
-Solution.prototype.shuffle = function() {};
-//
-/** 
+// Runtime:        302 ms, faster than 16.16%   |   206 ms,  faster than 73.59%   |    155 ms, faster than 97.44%
+// Memory Usage:  57.9 MB, less than   30.51%   |   57.9 MB, less than   30.77%   |   51.8 MB, less than   95.13%
+class Solution {
+  constructor(nums) { this.nums = nums; }
+  reset() { return this.nums; }
+  shuffle() {
+    let res = [...this.nums];
+    for (let i = 0; i < res.length; i++) {
+      const rng = Math.floor(Math.random() * res.length);
+      [res[i], res[rng]] = [res[rng], res[i]];
+    }
+    return res;
+  }
+}
+/**
  * Your Solution object will be instantiated and called as such:
  * var obj = new Solution(nums)
  * var param_1 = obj.reset()
@@ -28,7 +28,13 @@ Solution.prototype.shuffle = function() {};
  */
 // **************************************************************************************************************** //
 
-console.log(Solution(['Solution', 'shuffle', 'reset', 'shuffle'], [[[1, 2, 3]], [], [], []]));
+const s1 = new Solution([1, 2, 3]);
+
+console.log(s1.nums);
+console.log(s1.shuffle());
+console.log(s1.reset());
+console.log(s1.shuffle());
+console.log(s1.nums);
 
 // Example 1:
 // Input
@@ -39,8 +45,8 @@ console.log(Solution(['Solution', 'shuffle', 'reset', 'shuffle'], [[[1, 2, 3]], 
 // Explanation
 // Solution solution = new Solution([1, 2, 3]);
 // solution.shuffle();    // Shuffle the array [1,2,3] and return its result.
-                          // Any permutation of [1,2,3] must be equally likely to be returned.
-                          // Example: return [3, 1, 2]
+// Any permutation of [1,2,3] must be equally likely to be returned.
+// Example: return [3, 1, 2]
 // solution.reset();      // Resets the array back to its original configuration [1,2,3]. Return [1, 2, 3]
 // solution.shuffle();    // Returns the random shuffling of array [1,2,3]. Example: return [1, 3, 2]
 
