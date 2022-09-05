@@ -7,7 +7,26 @@
 /** @param {number[]} nums **/
 /** @return {void} Do not return anything, modify nums in-place instead. **/
 //
-const sortColors = (nums) => {};
+// O(n) time  |  O(1) space
+// Runtime:        134 ms, faster than 5.01%   |     57 ms, faster than 98.37%   |     84 ms, faster than 60.61%
+// Memory Usage:  42.3 MB, less than  40.67%   |   42.3 MB, less than   40.67%   |   42.4 MB, less than   28.47%
+const sortColors = (nums) => {
+  let left = 0, right = nums.length - 1;
+  for (let i = left; i <= right; i++) {
+    // left case
+    if (nums[i] == 0) {
+      [nums[left], nums[i]] = [nums[i], nums[left]];
+      left++;
+    }
+    // right case
+    else if (nums[i] == 2) {
+      [nums[right], nums[i]] = [nums[i], nums[right]];
+      right--;
+      i--;
+    }
+  }
+  return nums;
+};
 // **************************************************************************************************************** //
 
 console.log(sortColors([2, 0, 2, 1, 1, 0]));
