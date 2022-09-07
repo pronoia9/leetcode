@@ -31,15 +31,31 @@
 /** @constructor **/ /** @param {NestedInteger[]} nestedList  **/
 //
 class NestedIterator {
-  constructor(nestedList) { }
+  constructor(nestedList) {
+    this.list = this.recursion(nestedList);
+    this.curr = 0;
+    this.length = this.list.length;
+  }
   
   /** @this NestedIterator **/ /** @returns {boolean} **/
-  //
-  hasNext() { }
+  hasNext() {
+    return this.curr < this.length;
+  }
   
   /** @this NestedIterator **/ /** @returns {integer} **/
-  //
-  next() {}
+  next() {
+    return this.list[this.curr++];
+  }
+
+  flat() {}
+  
+  recursion(list, res = []) {
+   for (let i = 0; i < list.length; i++) {
+     if (typeof list[i] === 'number') res.push(list[i]);
+     else this.recursion(list[i], res);
+   }
+   return res;
+  }
 }
 /**
  * Your NestedIterator will be called like this:
@@ -48,8 +64,14 @@ class NestedIterator {
 */
 // **************************************************************************************************************** //
 
-console.log(new NestedIterator([[1, 1], 2, [1, 1]]));
-console.log(new NestedIterator([1, [4, [6]]]));
+const one = new NestedIterator([[1, 1], 2, [1, 1]]), oneRes = [],
+  two = new NestedIterator([1, [4, [6]]]), twoRes = [];
+console.log(one);
+console.log(two);
+while (one.hasNext()) oneRes.push(one.next());
+while (two.hasNext()) twoRes.push(two.next());
+console.log(oneRes);
+console.log(twoRes);
 
 // Example 1:
 // Input: nestedList = [[1,1],2,[1,1]]
