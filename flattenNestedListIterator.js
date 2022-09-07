@@ -29,30 +29,21 @@
 // };
 // 
 /** @constructor **/ /** @param {NestedInteger[]} nestedList  **/
-//
+// Runtime:       89 ms, faster than 97.79%
+// Memory Usage:  54 MB, less than   62.87%
 class NestedIterator {
-  constructor(nestedList) {
-    this.list = this.recursion(nestedList);
-    this.curr = 0;
-    this.length = this.list.length;
-  }
+  constructor(nestedList) { this.list = this.flat(nestedList); }
   
   /** @this NestedIterator **/ /** @returns {boolean} **/
-  hasNext() {
-    return this.curr < this.length;
-  }
+  hasNext() { return this.list.length; }
   
   /** @this NestedIterator **/ /** @returns {integer} **/
-  next() {
-    return this.list[this.curr++];
-  }
-
-  flat() {}
+  next() { return this.list.shift(); }
   
-  recursion(list, res = []) {
+  flat(list, res = []) {
    for (let i = 0; i < list.length; i++) {
-     if (typeof list[i] === 'number') res.push(list[i]);
-     else this.recursion(list[i], res);
+     if (list[i].isInteger()) res.push(list[i].getInteger());
+     else this.flat(list[i].getList(), res);
    }
    return res;
   }
@@ -66,8 +57,8 @@ class NestedIterator {
 
 const one = new NestedIterator([[1, 1], 2, [1, 1]]), oneRes = [],
   two = new NestedIterator([1, [4, [6]]]), twoRes = [];
-console.log(one);
-console.log(two);
+console.log(one.list);
+console.log(two.list);
 while (one.hasNext()) oneRes.push(one.next());
 while (two.hasNext()) twoRes.push(two.next());
 console.log(oneRes);
