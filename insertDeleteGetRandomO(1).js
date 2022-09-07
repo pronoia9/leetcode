@@ -8,18 +8,30 @@
 // https://leetcode.com/problems/insert-delete-getrandom-o1/
 //
 class RandomizedSet {
-  constructor() { }
-  
+  constructor() {
+    this.nums = new Set();
+  }
+
   /** @param {number} val **/ /** @return {boolean} **/
-  insert(val) { }
-  
+  insert(val) {
+    const len = this.nums.size;
+    this.nums.add(val);
+    if (this.nums.size === len) return false;
+    else return true;
+  }
+
   /** @param {number} val **/ /** @return {boolean} **/
-  remove(val) { }
-  
+  remove(val) {
+    if (!this.nums.delete(val)) return false;
+    else return true;
+  }
+
   /** @return {number} **/
-  getRandom() {}
+  getRandom() {
+    return [...this.nums.values()][Math.floor(Math.random() * this.nums.size)];
+  }
 }
-/** 
+/**
  * Your RandomizedSet object will be instantiated and called as such:
  * var obj = new RandomizedSet()
  * var param_1 = obj.insert(val)
@@ -29,18 +41,18 @@ class RandomizedSet {
 // **************************************************************************************************************** //
 
 const randomizedSet = new RandomizedSet();
-console.log(randomizedSet.insert(1));   //
-console.log(randomizedSet);             //
-console.log(randomizedSet.remove(2));   //
-console.log(randomizedSet);             //
-console.log(randomizedSet.insert(2));   //
-console.log(randomizedSet);             //
-console.log(randomizedSet.getRandom()); //
-console.log(randomizedSet.remove(1));   //
-console.log(randomizedSet);             //
-console.log(randomizedSet.insert(2));   //
-console.log(randomizedSet);             //
-console.log(randomizedSet.getRandom()); //
+console.log(randomizedSet.insert(1));          
+console.log([...randomizedSet.nums.values()]); 
+console.log(randomizedSet.remove(2));          
+console.log([...randomizedSet.nums.values()]); 
+console.log(randomizedSet.insert(2));          
+console.log([...randomizedSet.nums.values()]); 
+console.log(randomizedSet.getRandom());        
+console.log(randomizedSet.remove(1));          
+console.log([...randomizedSet.nums.values()]); 
+console.log(randomizedSet.insert(2));          
+console.log([...randomizedSet.nums.values()]); 
+console.log(randomizedSet.getRandom());        
 
 // Example 1:
 // Input
@@ -56,7 +68,7 @@ console.log(randomizedSet.getRandom()); //
 // randomizedSet.getRandom(); // getRandom() should return either 1 or 2 randomly.
 // randomizedSet.remove(1); // Removes 1 from the set, returns true. Set now contains [2].
 // randomizedSet.insert(2); // 2 was already in the set, so return false.
-// randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2. 
+// randomizedSet.getRandom(); // Since 2 is the only number in the set, getRandom() will always return 2.
 
 // Constraints:
 // -231 <= val <= 231 - 1
