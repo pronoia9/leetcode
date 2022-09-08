@@ -6,29 +6,58 @@
 // int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned.
 // You must implement the functions of the class such that each function works in average O(1) time complexity.
 // https://leetcode.com/problems/insert-delete-getrandom-o1/
+// Runtime:         789 ms, faster than 19.68%   |     603 ms, faster than 55.09%
+// Memory Usage:  117.5 MB, less than   17.02%   |   115.6 MB, less than   25.00%
+{
+  class RandomizedSet {
+    constructor() {
+      this.nums = new Set();
+    }
+
+    /** @param {number} val **/ /** @return {boolean} **/
+    insert(val) {
+      const len = this.nums.size;
+      this.nums.add(val);
+      if (this.nums.size === len) return false;
+      else return true;
+    }
+    t;
+    /** @param {number} val **/ /** @return {boolean} **/
+    remove(val) {
+      if (!this.nums.delete(val)) return false;
+      else return true;
+    }
+
+    /** @return {number} **/
+    getRandom() {
+      return [...this.nums][Math.floor(Math.random() * this.nums.size)];
+    }
+  }
+}
 //
+// Runtime:         778 ms, faster than 20.95%
+// Memory Usage:  100.3 MB, less than   81.25%
 class RandomizedSet {
   constructor() {
-    this.nums = new Set();
+    this.nums = [];
+    this.set = new Set();
   }
 
-  /** @param {number} val **/ /** @return {boolean} **/
   insert(val) {
-    const len = this.nums.size;
-    this.nums.add(val);
-    if (this.nums.size === len) return false;
-    else return true;
+    this.set.add(val);
+    if (this.set.size === this.nums.length) return false;
+    this.nums.push(val);
+    return true;
   }
 
-  /** @param {number} val **/ /** @return {boolean} **/
   remove(val) {
-    if (!this.nums.delete(val)) return false;
-    else return true;
+    if (!this.set.delete(val)) return false;
+    this.nums.splice(this.nums.indexOf(val), 1);
+    return true;
   }
 
-  /** @return {number} **/
   getRandom() {
-    return [...this.nums.values()][Math.floor(Math.random() * this.nums.size)];
+    return this.nums[Math.floor(Math.random() * this.nums.length)];
   }
 }
 /**
