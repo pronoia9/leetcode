@@ -6,6 +6,39 @@
 // int getRandom() Returns a random element from the current set of elements (it's guaranteed that at least one element exists when this method is called). Each element must have the same probability of being returned.
 // You must implement the functions of the class such that each function works in average O(1) time complexity.
 // https://leetcode.com/problems/insert-delete-getrandom-o1/
+//
+// Map
+// Runtime:        422 ms, faster than 90.47%
+// Memory Usage:  93.6 MB, less than   95.12%
+class RandomizedSet {
+  constructor() {
+    this.nums = [];
+    this.map = new Map();
+  }
+
+  insert(val) {
+    if (this.map.has(val)) return false;
+    this.map.set(val, this.nums.length);
+    this.nums.push(val);
+    return true;
+  }
+
+  remove(val) {
+    if (!this.map.has(val)) return false;
+    const i = this.map.get(val);
+    [this.nums[i], this.nums[this.nums.length - 1]] = [this.nums[this.nums.length - 1], this.nums[i]];
+    this.nums.pop();
+    this.map.delete(val);
+    this.map.set(this.nums[i], i);
+    return true;
+  }
+
+  getRandom() {
+    return this.nums[Math.floor(Math.random() * this.nums.length)];
+  }
+}
+//
+// Set
 // Runtime:         789 ms, faster than 19.68%   |     603 ms, faster than 55.09%
 // Memory Usage:  117.5 MB, less than   17.02%   |   115.6 MB, less than   25.00%
 {
@@ -35,31 +68,35 @@
   }
 }
 //
-// Runtime:         778 ms, faster than 20.95%
-// Memory Usage:  100.3 MB, less than   81.25%
-class RandomizedSet {
-  constructor() {
-    this.nums = [];
-    this.set = new Set();
-  }
+// Set
+// Runtime:         778 ms, faster than 20.95%   |     667 ms, faster than 43.82%
+// Memory Usage:  100.3 MB, less than   81.25%   |   110.2 MB, less than   45.18%
+{
+  class RandomizedSet {
+    constructor() {
+      this.nums = [];
+      this.set = new Set();
+    }
 
-  insert(val) {
-    this.set.add(val);
-    if (this.set.size === this.nums.length) return false;
-    this.nums.push(val);
-    return true;
-  }
+    insert(val) {
+      this.set.add(val);
+      if (this.set.size === this.nums.length) return false;
+      this.nums.push(val);
+      return true;
+    }
 
-  remove(val) {
-    if (!this.set.delete(val)) return false;
-    this.nums.splice(this.nums.indexOf(val), 1);
-    return true;
-  }
+    remove(val) {
+      if (!this.set.delete(val)) return false;
+      this.nums.splice(this.nums.indexOf(val), 1);
+      return true;
+    }
 
-  getRandom() {
-    return this.nums[Math.floor(Math.random() * this.nums.length)];
+    getRandom() {
+      return this.nums[Math.floor(Math.random() * this.nums.length)];
+    }
   }
 }
+//
 /**
  * Your RandomizedSet object will be instantiated and called as such:
  * var obj = new RandomizedSet()
@@ -70,18 +107,18 @@ class RandomizedSet {
 // **************************************************************************************************************** //
 
 const randomizedSet = new RandomizedSet();
-console.log(randomizedSet.insert(1));          
-console.log([...randomizedSet.nums.values()]); 
-console.log(randomizedSet.remove(2));          
-console.log([...randomizedSet.nums.values()]); 
-console.log(randomizedSet.insert(2));          
-console.log([...randomizedSet.nums.values()]); 
-console.log(randomizedSet.getRandom());        
-console.log(randomizedSet.remove(1));          
-console.log([...randomizedSet.nums.values()]); 
-console.log(randomizedSet.insert(2));          
-console.log([...randomizedSet.nums.values()]); 
-console.log(randomizedSet.getRandom());        
+console.log(randomizedSet.insert(1));
+console.log(randomizedSet.nums);
+console.log(randomizedSet.remove(2));
+console.log(randomizedSet.nums);
+console.log(randomizedSet.insert(2));
+console.log(randomizedSet.nums);
+console.log(randomizedSet.getRandom());
+console.log(randomizedSet.remove(1));
+console.log(randomizedSet.nums);
+console.log(randomizedSet.insert(2));
+console.log(randomizedSet.nums);
+console.log(randomizedSet.getRandom());
 
 // Example 1:
 // Input
