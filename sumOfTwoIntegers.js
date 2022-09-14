@@ -5,15 +5,25 @@
 /** @param {number} a **/ /** @param {number} b **/ /** @return {number} **/
 // Runtime:         94 ms, faster than 32.79%   |     84 ms, faster than 51.47%   |     63 ms, faster than 89.68%
 // Memory Usage:  41.7 MB, less than   72.86%   |   41.7 MB, less than   62.00%   |   41.6 MB, less than   72.86%
-const getSum = (a, b) =>
-  Array.from({ length: Math.abs(Math.min(a, b)) }, () => 0).reduce(
-    (acc, curr) => (Math.sign(Math.min(a, b)) > 0 ? ++acc : --acc),
-    Math.max(a, b)
-  );
+{
+  const getSum = (a, b) =>
+    Array.from({ length: Math.abs(Math.min(a, b)) }, () => 0).reduce(
+      (acc, curr) => (Math.sign(Math.min(a, b)) > 0 ? ++acc : --acc),
+      Math.max(a, b)
+    );
+}
+//
+// Runtime:         92 ms, faster than 36.37%   |     73 ms, faster than 71.44%
+// Memory Usage:  41.6 MB, less than   72.86%   |   41.9 MB, less than   47.88%
+const getSum = (a, b) => {
+  while (b != 0) [a, b] = [a ^ b, (a & b) << 1];
+  return a;
+};
 // **************************************************************************************************************** //
 
 console.log(getSum(1, 2));
 console.log(getSum(2, 3));
+console.log(getSum(9, 11));
 console.log(getSum(2, -3));
 
 // Example 1:
