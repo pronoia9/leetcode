@@ -6,9 +6,18 @@
 // https://leetcode.com/problems/find-peak-element/
 //
 /** @param {number[]} nums **/ /** @return {number} **/
-// O(log n) time
-//
-const findPeakElement = (nums) => {};
+// O(log n) time, O(1) space
+// Runtime:       87 ms, faster than 55.36%   |     97 ms, faster than 35.36%
+// Memory Usage:  42 MB, less than   77.58%   |   41.8 MB, less than   91.52%
+const findPeakElement = (nums) => {
+  let left = 0, right = nums.length - 1;
+  while (left < right) {
+    let middle = Math.floor((left + right) / 2);
+    if (nums[middle] < nums[middle + 1]) left = middle + 1;
+    else right = middle;
+  }
+  return left;
+};
 // **************************************************************************************************************** //
 
 console.log(findPeakElement([1, 2, 3, 1]));
