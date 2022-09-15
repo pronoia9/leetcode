@@ -4,11 +4,19 @@
 // https://leetcode.com/problems/house-robber/
 //
 /** @param {number[]} nums **/ /** @return {number} **/
-const rob = (nums) => {};
+//
+// Runtime:        108 ms, faster than 15.31%   |     57 ms, faster than 97.84%
+// Memory Usage:  42.5 MB, less than    8.18%   |   42.4 MB, less than   14.99%
+const rob = (nums) => {
+  let rob1 = 0, rob2 = 0;
+  for (const n of nums) [rob1, rob2] = [rob2, Math.max(rob1 + n, rob2)];
+  return rob2;
+};
 // **************************************************************************************************************** //
 
 console.log(rob([1, 2, 3, 1]));
 console.log(rob([2, 7, 9, 3, 1]));
+console.log(rob([2, 1, 1, 2]));
 
 // Example 1:
 // Input: nums = [1,2,3,1]
