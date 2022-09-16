@@ -6,7 +6,20 @@
 //
 /** @param {number[]} coins **/ /** @param {number} amount **/ /** @return {number} **/
 //
-const coinChange = (coins, amount) => {};
+// DP - Bottom-up
+// O(amount * coins.length) time, O(amount) space
+// Runtime:        323 ms, faster than 22.26%   |    151 ms, faster than 75.90%
+// Memory Usage:  47.4 MB, less than   59.46%   |   47.4 MB, less than   58.45% 
+const coinChange = (coins, amount) => {
+  const dp = Array.from({ length: amount + 1 }, () => Infinity);
+  dp[0] = 0;
+  for (let i = 1; i < amount + 1; i++) {
+    for (const coin of coins) {
+      if (i - coin >= 0) dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+    }
+  }
+  return dp[amount] !== Infinity ? dp[amount] : -1;
+};
 // **************************************************************************************************************** //
 
 console.log(coinChange([1, 2, 5], 11));
