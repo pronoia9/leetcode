@@ -1,0 +1,41 @@
+// ***********************************   19. Remove Nth Node From End of List   *********************************** //
+// Given the head of a linked list, remove the nth node from the end of the list and return its head.
+// https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+// 
+// Definition for singly-linked list.
+class ListNode {
+  constructor(val, next) {
+    this.val = (val === undefined ? 0 : val);
+    this.next = (next === undefined ? null : next);
+  }
+}
+// 
+/** @param {ListNode} head **/ /** @param {number} n **/ /** @return {ListNode} **/
+// 
+const removeNthFromEnd = (head, n) => {};
+// **************************************************************************************************************** //
+
+console.log(removeNthFromEnd(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))), 2));
+console.log(removeNthFromEnd(new ListNode(1), 1));
+console.log(removeNthFromEnd(new ListNode(1, new ListNode(2)), 1));
+
+// Example 1:
+// https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg
+// Input: head = [1,2,3,4,5], n = 2
+// Output: [1,2,3,5]
+
+// Example 2:
+// Input: head = [1], n = 1
+// Output: []
+
+// Example 3:
+// Input: head = [1,2], n = 1
+// Output: [1]
+
+// Constraints:
+// The number of nodes in the list is sz.
+// 1 <= sz <= 30
+// 0 <= Node.val <= 100
+// 1 <= n <= sz
+
+// Follow up: Could you do this in one pass?
