@@ -1,4 +1,4 @@
-// *****************************************   227. Basic Calculator II   ***************************************** //
+// ***************************************   227. Basic Calculator II   *************************************** //
 // Given a string s which represents an expression, evaluate this expression and return its value.
 // The integer division should truncate toward zero.
 // You may assume that the given expression is always valid. All intermediate results will be in the range of [-231, 231 - 1].
@@ -6,12 +6,25 @@
 // https://leetcode.com/problems/basic-calculator-ii/
 //
 /** @param {string} s **/ /** @return {number} **/
-//
-const calculate = (s) => {};
+// Runtime:        157 ms, faster than 24.89%   |   140 ms, faster than 40.06%   |     89 ms, faster than 93.71%
+// Memory Usage:  50.8 MB, less than   32.33%   |    51 MB, less than   29.04%   |   50.8 MB, less than   32.33%
+const calculate = (s) => {
+  const calc = s.match(/(\d+)|[+-/*]/g), // arrayify digits + operators
+    res = [+calc.shift()], // get first digit as integer (+) and remove it from calc array
+    ops = {
+      '+': (n) => res.push(n), // only add + and - to the res array
+      '-': (n) => res.push(-n), // for * and / pop the last number from res and apply the operation on it
+      '*': (n) => res.push(res.pop() * n),
+      '/': (n) => res.push((res.pop() / n) | 0),
+    };
+
+  for (let i = 0; i < calc.length; i++) ops[calc[i]]?.(+calc[i + 1]); // add + or - operations to res
+  return res.reduce((acc, curr) => acc + curr); // calculate the remaining +/- operations and return the accumulate
+};
 // **************************************************************************************************************** //
 
-console.log(calculate('3+2*2'));
-console.log(calculate(' 3/2 '));
+// console.log(calculate('3+2*2'));
+// console.log(calculate(' 3/2 '));
 console.log(calculate(' 3+5 / 2 '));
 
 // Example 1:
