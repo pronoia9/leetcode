@@ -5,7 +5,28 @@
 //
 /** @param {character[][]} board **/ /** @param {string} word **/ /** @return {boolean} **/
 //
-const exist = (board, word) => {};
+// Recursive Backtracking (DFS)
+// Runtime:       1509 ms, faster than 30.94%
+// Memory Usage:  48.1 MB, less than   50.14%
+const exist = (board, word) => {
+  const ROWS = board.length, COLS = board[0].length, path = new Set();
+
+  const dfs = (row, col, i) => {
+    if (i === word.length) return true;
+    if ((row < 0 || col < 0) || (row >= ROWS || col >= COLS) || word[i] != board[row][col] || (path.has(`${row}-${col}`))) return false;
+
+    path.add(`${row}-${col}`);
+    const top = dfs(row - 1, col, i + 1),
+      right =   dfs(row, col + 1, i + 1),
+      bottom =  dfs(row + 1, col, i + 1),
+      left =    dfs(row, col - 1, i + 1);
+    path.delete(`${row}-${col}`);
+    return top || right || bottom || left;
+  }
+
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (dfs(r, c, 0)) return true;
+  return false;
+};
 // **************************************************************************************************************** //
 
 console.log(exist([
