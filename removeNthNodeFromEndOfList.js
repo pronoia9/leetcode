@@ -11,13 +11,26 @@ class ListNode {
 }
 // 
 /** @param {ListNode} head **/ /** @param {number} n **/ /** @return {ListNode} **/
-// 
-const removeNthFromEnd = (head, n) => {};
+//
+// Runtime:         91 ms, faster than 58.86%   |   112 ms, faster than 23.03%   |     80 ms, faster than 75.16%
+// Memory Usage:  43.7 MB, less than   16.62%   |    42 MB, less than   98.84%   |   42.6 MB, less than   71.09%
+ const removeNthFromEnd = (head, n) => {
+   let dummy = new ListNode('dummy', head), left = dummy, right = head;
+   for (let i = 0; i < n; i++) right = right.next;
+   while (right) {
+     left = left.next;
+     right = right.next;
+   }
+   left.next = left.next.next;
+   return dummy.next;
+ };
 // **************************************************************************************************************** //
 
-console.log(removeNthFromEnd(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))), 2));
-console.log(removeNthFromEnd(new ListNode(1), 1));
-console.log(removeNthFromEnd(new ListNode(1, new ListNode(2)), 1));
+console.log(
+  arrayify(removeNthFromEnd(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))), 2))
+);
+// console.log(arrayify(removeNthFromEnd(new ListNode(1), 1)));
+// console.log(arrayify(removeNthFromEnd(new ListNode(1, new ListNode(2)), 1)));
 
 // Example 1:
 // https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg
@@ -39,3 +52,12 @@ console.log(removeNthFromEnd(new ListNode(1, new ListNode(2)), 1));
 // 1 <= n <= sz
 
 // Follow up: Could you do this in one pass?
+
+function arrayify(list) {
+  const arr = [];
+  while (list) {
+    arr.push(list.val);
+    list = list.next;
+  }
+  return arr;
+};
