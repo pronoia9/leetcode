@@ -10,7 +10,40 @@
 //
 /** @param {number[][]} board **/ /** @return {void} Do not return anything, modify board in-place instead. **/
 //
-const gameOfLife = (board) => {};
+// O(9*n*m) time, O(1) spcae
+// Runtime:        100 ms, faster than 38.12%   |     76 ms, faster than 79.24%
+// Memory Usage:  41.9 MB, less than   90.42%   |   42.1 MB, less than   71.06%
+const gameOfLife = (board) => {
+  const ROWS = board.length, COLS = board[0].length, map = new Map(Object.entries({ 0: 0, 1: 0, 2: 1, 3: 1 }));
+  // helper
+  const countNeighbors = (r, c) => {
+    let neighbors = 0;
+    for (let i = r - 1; i < r + 2; i++) {
+      for (let j = c - 1; j < c + 2; j++) {
+        if ((i === r && j === c) || i < 0 || j < 0 || i === ROWS || j === COLS) continue;
+        if (board[i][j] === 1 || board[i][j] === 3) neighbors++;
+      }
+    }
+    return neighbors;
+  };
+  // put map values
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      const nei = countNeighbors(r, c);
+      if (board[r][c]) {
+        if (nei === 2 || nei === 3) board[r][c] = 3;
+      }
+      else if (nei === 3) board[r][c] = 2;
+    }
+  }
+  // put new values from map
+  for (let r = 0; r < ROWS; r++) {
+    for (let c = 0; c < COLS; c++) {
+      board[r][c] = map.get(`${board[r][c]}`);
+    }
+  }
+  return board;
+};
 // **************************************************************************************************************** //
 
 console.log(
@@ -47,3 +80,10 @@ console.log(
 // Follow up:
 // Could you solve it in-place? Remember that the board needs to be updated simultaneously: You cannot update some cells first and then use their updated values to update other cells.
 // In this question, we represent the board using a 2D array. In principle, the board is infinite, which would cause problems when the active area encroaches upon the border of the array (i.e., live cells reach the border). How would you address these problems?
+
+//   i  |  OG  |  NEW
+// -------------------
+//   0  |  0   |  0
+//   1  |  1   |  0
+//   2  |  0   |  1
+//   3  |  1   |  1
