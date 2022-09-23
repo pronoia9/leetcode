@@ -11,7 +11,17 @@ function TreeNode(val, left, right) {
 //
 /** @param {number[]} preorder **/ /** @param {number[]} inorder **/ /** @return {TreeNode} **/
 //
-const buildTree = (preorder, inorder) => {};
+// Recursive
+// Runtime:         214 ms, faster than 37.78%
+// Memory Usage:  136.4 MB, less than   24.39%
+const buildTree = (preorder, inorder) => {
+  if (!preorder || !inorder || !preorder.length || !inorder.length) return null;
+  const root = new TreeNode(preorder[0]),
+    middle = inorder.indexOf(preorder[0]);
+  root.left = buildTree(preorder.slice(1, middle + 1), inorder.slice(0, middle));
+  root.right = buildTree(preorder.slice(middle + 1), inorder.slice(middle + 1));
+  return root;
+};
 // **************************************************************************************************************** //
 
 console.log(buildTree([3, 9, 20, 15, 7], [9, 3, 15, 20, 7]));
