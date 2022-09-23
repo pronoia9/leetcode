@@ -23,10 +23,41 @@ const partition = (s) => {
         part.pop();
       }
     }
-  }
+  };
   dfs(0);
   return res;
 };
+//
+// Runtime:        449 ms, faster than 47.61%
+// Memory Usage:  79.9 MB, less than   79.53%
+{
+  const isPalindrome = (str, left, right) => {
+    while (left < right) {
+      if (str[left] != str[right]) return false;
+      left++;
+      right--;
+    }
+    return true;
+  };
+  const partition = (s) => {
+    const res = [], part = [];
+    const dfs = (i) => {
+      if (i >= s.length) {
+        res.push([...part]);
+        return;
+      }
+      for (let j = i; j < s.length; j++) {
+        if (isPalindrome(s, i, j)) {
+          part.push(s.slice(i, j + 1));
+          dfs(j + 1);
+          part.pop();
+        }
+      }
+    };
+    dfs(0);
+    return res;
+  };
+}
 // **************************************************************************************************************** //
 
 console.log(partition('aab'));
