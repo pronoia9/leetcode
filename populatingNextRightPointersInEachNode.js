@@ -20,11 +20,27 @@ function Node(val, left, right, next) {
 //
 /** @param {Node} root **/ /** @return {Node} **/
 //
-const connect = (root) => {};
+// O(n) time, O(n) space
+// Runtime:        127 ms, faster than 45.47%   |     81 ms, faster than 95.09%
+// Memory Usage:  48.2 MB, less than   85.46%   |   48.7 MB, less than   56.38%
+const connect = (root) => {
+  if (!root) return root;
+  let curr = root, next = root.left;
+  while (curr && next) {
+    curr.left.next = curr.right;
+    if (curr.next) curr.right.next = curr.next.left;
+    curr = curr.next;
+    if (!curr) {
+      curr = next;
+      next = curr.left;
+    }
+  }
+  return root;
+};
 // **************************************************************************************************************** //
 
-console.log(connect([1, 2, 3, 4, 5, 6, 7]));
-console.log(connect([]));
+console.log(connect(new Node(1, new Node(2, new Node(4), new Node(5)), new Node(3, new Node(6), new Node(7)))));
+console.log(connect(new Node()));
 
 // Example 1:
 // https://assets.leetcode.com/uploads/2019/02/14/116_sample.png
