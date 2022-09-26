@@ -5,7 +5,19 @@
 //
 /** @param {number[]} nums **/ /** @return {number} **/
 //
-const lengthOfLIS = (nums) => {};
+// DP
+// O(n^2) time, O(n) space
+// Runtime:        217 ms, faster than 54.56%   |    179 ms, faster than 72.15%   |    189 ms, faster than 68.82%
+// Memory Usage:  43.6 MB, less than   78.91%   |   43.8 MB, less than   65.14%   |   43.5 MB, less than   83.39%
+const lengthOfLIS = (nums) => {
+  const LIS = Array.from({ length: nums.length }, () => 1);
+  for (let i = nums.length - 1; i >= 0; i--) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] < nums[j]) LIS[i] = Math.max(LIS[i], 1 + LIS[j]);
+    }
+  }
+  return Math.max(...LIS);
+};
 // **************************************************************************************************************** //
 
 console.log(lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]));
