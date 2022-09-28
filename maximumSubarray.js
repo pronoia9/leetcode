@@ -5,7 +5,18 @@
 //
 /** @param {number[]} nums **/ /** @return {number} **/
 //
-const maxSubArray = (nums) => {};
+// O(n) time, O(1) space
+// Runtime:        139 ms, faster than 36.87%   |    116 ms, faster than 66.48%
+// Memory Usage:  50.1 MB, less than   79.14%   |   50.7 MB, less than   24.20%
+const maxSubArray = (nums) => {
+  let maxSub = nums[0], curSum = 0;
+  for (const num of nums) {
+    if (curSum < 0) curSum = 0;
+    curSum += num;
+    maxSub = Math.max(maxSub, curSum);
+  }
+  return maxSub;
+};
 // **************************************************************************************************************** //
 
 console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
