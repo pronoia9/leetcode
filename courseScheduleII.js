@@ -6,12 +6,40 @@
 //
 /** @param {number} numCourses **/ /** @param {number[][]} prerequisites **/ /** @return {number[]} **/
 //
-const findOrder = (numCourses, prerequisites) => {};
+// Topological sort
+// O(prepres + courses) time
+// Runtime:         83 ms, faster than 94.70%
+// Memory Usage:  48.7 MB, less than   31.94%
+const findOrder = (numCourses, prerequisites) => {
+  const prereqMap = new Map(Object.entries(Array.from({ length: numCourses }, () => []))),
+    visit = new Set(),
+    cycle = new Set(),
+    res = [];
+
+  // set all prereqs in the map
+  for (const [course, prereq] of prerequisites) prereqMap.set(`${course}`, [...prereqMap.get(`${course}`), prereq]);
+
+  const dfs = (crs) => {
+    if (cycle.has(crs)) return false;
+    if (visit.has(crs)) return true;
+    cycle.add(crs);
+    for (const pre of prereqMap.get(`${crs}`)) if (!dfs(pre)) return false;
+    cycle.delete(crs);
+    visit.add(crs);
+    res.push(parseInt(crs));
+    return true;
+  };
+
+  for (let i = 0; i < prereqMap.size; i++) if (!dfs(i)) return [];
+  return res;
+};
 // **************************************************************************************************************** //
 
 console.log(findOrder(2, [[1, 0]]));
 console.log(findOrder(4, [[1, 0], [2, 0], [3, 1], [3, 2]]));
 console.log(findOrder(1, []));
+console.log(findOrder(6, [[0, 1], [0, 2], [1, 3], [3, 2], [4, 0], [5, 0]]));
+console.log(findOrder(3, [[1, 0], [1, 2], [0, 1],]));
 
 // Example 1:
 // Input: numCourses = 2, prerequisites = [[1,0]]
