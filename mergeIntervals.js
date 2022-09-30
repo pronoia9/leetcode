@@ -4,7 +4,19 @@
 //
 /** @param {number[][]} intervals **/ /** @return {number[][]} **/
 //
-const merge = (intervals) => {};
+// O(nlogn) time
+// Runtime:        111 ms, faster than 90.06%
+// Memory Usage:  48.3 MB, less than   94.33%
+const merge = (intervals) => {
+  intervals.sort(([a1, b1], [a2, b2]) => a1 - a2);
+  const res = [intervals[0]];
+  for (let i = 1; i < intervals.length; i++) {
+    const [start, end] = intervals[i], lastEnd = res[res.length - 1][1];
+    if (start <= lastEnd) res[res.length - 1][1] = Math.max(lastEnd, end);
+    else res.push(intervals[i]);
+  }
+  return res;
+};
 // **************************************************************************************************************** //
 
 console.log(merge([[1, 3], [2, 6], [8, 10], [15, 18]]));
