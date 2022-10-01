@@ -5,8 +5,23 @@
 // https://leetcode.com/problems/gas-station/
 // 
 /** @param {number[]} gas **/ /** @param {number[]} cost **/ /** @return {number} **/ 
-// 
-const canCompleteCircuit = (gas, cost) => {};
+//
+// Greedy
+// O(n) time, o(1) space
+// Runtime:        127 ms, faster than 48.47%   |     80 ms, faster than 94.79%   |     74 ms, faster than 98.75%
+// Memory Usage:  50.7 MB, less than   66.48%   |   51.2 MB, less than   34.43%   |   50.5 MB, less than   78.82%
+const canCompleteCircuit = (gas, cost) => {
+  if (gas.reduce((tot, cur) => tot += cur, 0) < cost.reduce((tot, cur) => tot += cur, 0)) return -1;
+  let total = 0, res = 0;
+  for (let i = 0; i < gas.length; i++) {
+    total += gas[i] - cost[i];
+    if (total < 0) {
+      total = 0;
+      res = i + 1;
+    }
+  }
+  return res;
+};
 // **************************************************************************************************************** //
 
 console.log(canCompleteCircuit([1, 2, 3, 4, 5], [3, 4, 5, 1, 2]));
