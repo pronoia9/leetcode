@@ -4,15 +4,28 @@
 // Note that division between two integers should truncate toward zero.
 // It is guaranteed that the given RPN expression is always valid. That means the expression would always evaluate to a result, and there will not be any division by zero operation.
 // https://leetcode.com/problems/evaluate-reverse-polish-notation/
-// 
+//
 /** @param {string[]} tokens **/ /** @return {number} **/
-// 
-const evalRPN = (tokens) => {};
+//
+// O(n) time, O(n) space
+// Runtime:        106 ms, faster than 65.95%   |     79 ms, faster than 91.91%
+// Memory Usage:  44.6 MB, less than   79.75%   |   44.5 MB, less than   79.75%
+const evalRPN = (tokens) => {
+  const stack = [], eval = { "+": (a, b) => a + b, "-": (a, b) => a - b, "*": (a, b) => a * b, "/": (a, b) => ~~(a / b) };
+  for (const curr of tokens) {
+    if (eval[curr]) {
+      const second = stack.pop(), first = stack.pop();
+      stack.push(eval[curr](first, second));
+    }
+    else stack.push(parseInt(curr));
+  }
+  return stack[0];
+};
 // **************************************************************************************************************** //
 
-console.log(evalRPN(["2", "1", "+", "3", "*"]));
-console.log(evalRPN(["4", "13", "5", "/", "+"]));
-console.log(evalRPN(["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]));
+console.log(evalRPN(['2', '1', '+', '3', '*']));
+console.log(evalRPN(['4', '13', '5', '/', '+']));
+console.log(evalRPN(['10', '6', '9', '3', '+', '-11', '*', '/', '*', '17', '+', '5', '+']));
 
 // Example 1:
 // Input: tokens = ["2","1","+","3","*"]
