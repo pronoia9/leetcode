@@ -4,8 +4,66 @@
 // https://leetcode.com/problems/surrounded-regions/
 // 
 /** @param {character[][]} board **/ /** @return {void} Do not return anything, modify board in-place instead. **/
-// 
-const solve = (board) => {};
+//
+// O(n*m) time, O(1)space
+// Runtime:        145 ms, faster than 51.67%   |    73 ms, faster than 99.46%
+// Memory Usage:  46.3 MB, less than   80.09%   |   45.9 MB, less than  93.54%
+{
+  const solve = (board) => {
+    const ROWS = board.length, COLS = board[0].length;
+
+    const capture = (r, c) => {
+      if (r < 0 || c < 0 || r == ROWS || c == COLS || board[r][c] != 'O') return;
+      board[r][c] = 'T';
+      capture(r + 1, c);
+      capture(r - 1, c);
+      capture(r, c + 1);
+      capture(r, c - 1);
+    };
+
+    // capture the unsurrounded regions (connected to border) (Os to Ts)
+    for (let r = 0; r < ROWS; r++)
+      for (let c = 0; c < COLS; c++)
+        if ((r == 0 || c == 0 || r == ROWS - 1 || c == COLS - 1) && board[r][c] == 'O') capture(r, c);
+
+    // capture the surrounded regions inside the border (Os to Xs)
+    for (let r = 1; r < ROWS - 1; r++) for (let c = 1; c < COLS - 1; c++) board[r][c] == 'O' && (board[r][c] = 'X');
+
+    // uncapture the unsurrounded regions (Ts to Os)
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (board[r][c] == 'T') board[r][c] = 'O';
+
+    return board;
+  };
+}
+//
+// Runtime:        134 ms, faster than 63.83%   |     87 ms, faster than 94.94%   |     91 ms, faster than 92.68%
+// Memory Usage:  46.3 MB, less than   80.09%   |   46.5 MB, less than   72.66%   |   46.3 MB, less than   80.09%
+const solve = (board) => {
+  const ROWS = board.length, COLS = board[0].length;
+
+  const capture = (r, c) => {
+    if (r < 0 || c < 0 || r >= ROWS || c >= COLS || board[r][c] != 'O') return;
+    board[r][c] = 'T';
+    capture(r + 1, c);
+    capture(r - 1, c);
+    capture(r, c + 1);
+    capture(r, c - 1);
+  };
+
+  // capture the unsurrounded regions (connected to border) (Os to Ts)
+  for (let r = 0, c = 0; c < COLS - 1; c++) capture(r, c);
+  for (let r = 0, c = COLS - 1; r < ROWS - 1; r++) capture(r, c);
+  for (let r = ROWS - 1, c = 0; c < COLS - 1; c++) capture(r, c);
+  for (let r = 0, c = 0; r < ROWS - 1; r++) capture(r, c);
+
+  // capture the surrounded regions inside the border (Os to Xs)
+  for (let r = 1; r < ROWS - 1; r++) for (let c = 1; c < COLS - 1; c++) board[r][c] == 'O' && (board[r][c] = 'X');
+
+  // uncapture the unsurrounded regions (Ts to Os)
+  for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) if (board[r][c] == 'T') board[r][c] = 'O';
+
+  return board;
+};
 // **************************************************************************************************************** //
 
 console.log(
@@ -17,6 +75,13 @@ console.log(
   ])
 );
 console.log(solve([['X']]));
+console.log(
+  solve([
+    ['O', 'O', 'O'],
+    ['O', 'O', 'O'],
+    ['O', 'O', 'O'],
+  ])
+);
 
 // Example 1:
 // https://assets.leetcode.com/uploads/2021/02/19/xogrid.jpg
