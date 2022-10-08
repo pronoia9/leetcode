@@ -3,10 +3,21 @@
 // The test cases are generated so that the answer will fit in a 32-bit integer.
 // A subarray is a contiguous subsequence of the array.
 // https://leetcode.com/problems/maximum-product-subarray/
-// 
+//
 /** @param {number[]} nums **/ /** @return {number} **/
-// 
-const maxProduct = (nums) => {};
+//
+// DP
+// Runtime:        113 ms, faster than 33.77%   |     72 ms, faster than 91.49%   |     77 ms, faster than 85.68%
+// Memory Usage:  44.6 MB, less than   14.02%   |   43.7 MB, less than   39.20%   |   44.1 MB, less than   33.82%
+const maxProduct = (nums) => {
+  let res = nums[0], currMin = 1, currMax = 1;
+  for (const n of nums) {
+    if (n == 0) { currMin = 1; currMax = 1; }
+    [currMin, currMax] = [Math.min(n, n * currMin, n * currMax), Math.max(n, n * currMax, n * currMin)];
+    res = Math.max(n, res, currMax, currMin);
+  }
+  return res;
+};
 // **************************************************************************************************************** //
 
 console.log(maxProduct([2, 3, -2, 4]));
