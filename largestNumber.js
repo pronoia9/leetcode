@@ -4,8 +4,13 @@
 // https://leetcode.com/problems/largest-number/
 // 
 /** @param {number[]} nums **/ /** @return {string} **/
-// 
-const largestNumber = (nums) => {};
+//
+// Runtime:        110 ms, faster than 38.37%   |     98 ms, faster than 62.60%   |     72 ms, faster than 91.28%
+// Memory Usage:  43.5 MB, less than   95.74%   |   44.1 MB, less than   59.88%   |   43.5 MB, less than   95.74%
+const largestNumber = (nums) => {
+  nums.sort((a, b) => parseInt(`${b}${a}`) - parseInt(`${a}${b}`));
+  return `${nums.join('')}`;
+};
 // **************************************************************************************************************** //
 
 console.log(largestNumber([10, 2]));
