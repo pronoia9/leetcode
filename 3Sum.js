@@ -5,7 +5,92 @@
 //
 /** @param {number[]} nums **/ /** @return {number[][]} **/
 //
-const threeSum = (nums) => {};
+// O(nlogn) + O(n^2) = O(n^2) time, O(1) space
+// Runtime:        216 ms, faster than 70.72%   |    193 ms, faster than 79.82%
+// Memory Usage:  52.7 MB, less than   60.69%   |   52.5 MB, less than   71.89%
+{
+  const threeSum = (nums) => {
+    nums.sort((a, b) => a - b);
+    const res = [];
+
+    for (let i = 0; i < nums.length; i++) {
+      const a = nums[i];
+      if (i > 0 && a == nums[i - 1]) continue;
+      let left = i + 1,
+        right = nums.length - 1;
+      while (left < right) {
+        const sum = a + nums[left] + nums[right];
+        if (sum > 0) right--;
+        else if (sum < 0) left++;
+        else {
+          res.push([a, nums[left], nums[right]]);
+          while (nums[left + 1] === nums[left]) left++;
+          while (nums[right - 1] === nums[right]) right--;
+          left++;
+          right--;
+        }
+      }
+    }
+
+    return res;
+  };
+}
+//
+// Runtime:        131 ms, faster than 98.41%   |    207 ms, faster than 75.03%
+// Memory Usage:  53.2 MB, less than   33.86%   |   52.8 MB, less than   54.42%
+{
+  const threeSum = (nums) => {
+    nums.sort((a, b) => a - b);
+    const result = [];
+
+    for (let i = 0; i < nums.length; i++) {
+      let left = i + 1,
+        right = nums.length - 1;
+      while (left < right) {
+        const sum = nums[i] + nums[left] + nums[right];
+        if (sum < 0) left++;
+        else if (sum > 0) right--;
+        else if (sum === 0) {
+          result.push([nums[i], nums[left], nums[right]]);
+          while (nums[left + 1] === nums[left]) left++;
+          while (nums[right - 1] === nums[right]) right--;
+          left++;
+          right--;
+        }
+      }
+      while (nums[i + 1] === nums[i]) i++;
+    }
+
+    return result;
+  };
+}
+//
+// Runtime:        143 ms, faster than 93.67%   |    130 ms, faster than 98.63%
+// Memory Usage:  53.1 MB, less than   37.86%   |   52.4 MB, less than   71.89%
+const threeSum = (nums) => {
+  nums.sort((a, b) => a - b);
+  const result = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+    let left = i + 1, right = nums.length - 1;
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right];
+      if (sum < 0) left++;
+      else if (sum > 0) right--;
+      else if (sum === 0) {
+        result.push([nums[i], nums[left], nums[right]]);
+        while (nums[left + 1] === nums[left]) left++;
+        while (nums[right - 1] === nums[right]) right--;
+        left++;
+        right--;
+      }
+    }
+  }
+
+  return result;
+};
 // **************************************************************************************************************** //
 
 console.log(threeSum([-1, 0, 1, 2, -1, -4]));
