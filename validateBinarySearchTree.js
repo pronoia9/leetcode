@@ -14,11 +14,20 @@ function TreeNode(val, left, right) {
 //
 /** @param {TreeNode} root **/ /** @return {boolean} **/
 //
-const isValidBST = (root) => {};
+// Runtime:        129 ms, faster than 25.52%   |     75 ms, faster than 92.76%
+// Memory Usage:  45.7 MB, less than   92.61%   |   46.1 MB, less than   75.68%
+const isValidBST = (root) => {
+  const isValid = (node, left, right) => {
+    if (!node) return true;
+    if (!(left < node.val && node.val < right)) return false;
+    return isValid(node.left, left, node.val) && isValid(node.right, node.val, right);
+  }
+  return isValid(root, -Infinity, Infinity);
+};
 // **************************************************************************************************************** //
 
-console.log(isValidBST([2, 1, 3]));
-console.log(isValidBST([5, 1, 4, null, null, 3, 6]));
+console.log(isValidBST(new TreeNode(2, new TreeNode(1), new TreeNode(3))));
+console.log(isValidBST(new TreeNode(5, new TreeNode(1), new TreeNode(4, new TreeNode(3), new TreeNode(6)))));
 
 // Example 1:
 // https://assets.leetcode.com/uploads/2020/12/01/tree1.jpg
