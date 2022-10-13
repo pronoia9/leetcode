@@ -11,10 +11,21 @@
 // Given a string s containing only digits, return the number of ways to decode it.
 // The test cases are generated so that the answer fits in a 32-bit integer.
 // https://leetcode.com/problems/decode-ways/
-// 
+//
 /** @param {string} s **/ /** @return {number} **/
-// 
-const numDecodings = (s) => {};
+//
+// DP
+// Runtime:         66 ms, faster than 95.68%
+// Memory Usage:  41.3 MB, less than   99.72%
+const numDecodings = (s) => {
+  const dp = Array.from({ length: s.length + 1 }, () => 1);
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (s[i] === '0') dp[i] = 0;
+    else dp[i] = dp[i + 1];
+    if (i + 2 <= s.length && (s[i] === '1' || (s[i] === '2' && parseInt(s[i + 1]) < 7))) dp[i] += dp[i + 2];
+  }
+  return dp[0];
+};
 // **************************************************************************************************************** //
 
 console.log(numDecodings('12'));
