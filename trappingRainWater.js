@@ -3,8 +3,27 @@
 // https://leetcode.com/problems/trapping-rain-water/
 // 
 /** @param {number[]} height **/ /** @return {number} **/
-// 
-const trap = (height) => {};
+//
+// O(n) time, O(1) space
+// Runtime:        110 ms, faster than 55.12%   |    119 ms, faster than 40.51%   |     90 ms, faster than 79.04%
+// Memory Usage:  42.9 MB, less than   81.96%   |   42.7 MB, less than   88.23%   |   42.9 MB, less than   81.96%
+const trap = (height) => {
+  if (!height) return 0;
+  let l = 0, r = height.length - 1, maxL = height[l], maxR = height[r], res = 0;
+  while (l < r) {
+    if (maxL < maxR) {
+      l++;
+      maxL = Math.max(maxL, height[l]);
+      res += maxL - height[l];
+    }
+    else {
+      r--;
+      maxR = Math.max(maxR, height[r]);
+      res += maxR - height[r];
+    }
+  }
+  return res;
+};
 // **************************************************************************************************************** //
 
 console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
