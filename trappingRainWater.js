@@ -7,7 +7,8 @@
 const trap = (height) => {};
 // **************************************************************************************************************** //
 
-// console.log(());
+console.log(trap([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]));
+console.log(trap([4, 2, 0, 3, 2, 5]));
 
 // Example 1:
 // https://assets.leetcode.com/uploads/2018/10/22/rainwatertrap.png
