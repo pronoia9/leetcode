@@ -8,7 +8,7 @@
 // Runtime:        110 ms, faster than 55.12%   |    119 ms, faster than 40.51%   |     90 ms, faster than 79.04%
 // Memory Usage:  42.9 MB, less than   81.96%   |   42.7 MB, less than   88.23%   |   42.9 MB, less than   81.96%
 const trap = (height) => {
-  if (!height) return 0;
+  if (!height || !height.length) return 0;
   let l = 0, r = height.length - 1, maxL = height[l], maxR = height[r], res = 0;
   while (l < r) {
     if (maxL < maxR) {
