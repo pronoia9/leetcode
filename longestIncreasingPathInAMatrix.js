@@ -5,7 +5,31 @@
 //
 /** @param {number[][]} matrix **/ /** @return {number} **/
 //
-const longestIncreasingPath = (matrix) => {};
+// O(n*m) time, O(n*m) space
+// Runtime:        168 ms, faster than 67.45%   |    160 ms, faster than 73.53%   |    144 ms, faster than 82.74%
+// Memory Usage:  45.5 MB, less than   94.12%   |   45.3 MB, less than   96.27%   |   45.6 MB, less than   93.14%
+const longestIncreasingPath = (matrix) => {
+  const ROWS = matrix.length, COLS = matrix[0].length,
+    dp = Array.from({ length: matrix.length }, () => Array.from({ length: matrix[0].length }));
+
+  const dfs = (r, c, prev) => {
+    if (r < 0 || r == ROWS || c < 0 || c == COLS || matrix[r][c] <= prev) return 0;
+    if (dp[r][c]) return dp[r][c];
+    let res = 1;
+    res = Math.max(
+      res,
+      1 + dfs(r + 1, c, matrix[r][c]),
+      1 + dfs(r - 1, c, matrix[r][c]),
+      1 + dfs(r, c + 1, matrix[r][c]),
+      1 + dfs(r, c - 1, matrix[r][c])
+    );
+    dp[r][c] = res;
+    return res;
+  };
+
+  for (let row = 0; row < ROWS; row++) for (let col = 0; col < COLS; col++) dfs(row, col, -1);
+  return Math.max(...dp.map((row) => Math.max(...row)));
+};
 // **************************************************************************************************************** //
 
 console.log(
