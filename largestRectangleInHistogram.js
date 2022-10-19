@@ -4,7 +4,43 @@
 //
 /** @param {number[]} heights **/ /** @return {number} **/
 //
-const largestRectangleArea = (heights) => {};
+// O(n) time, O(n) space
+// Runtime:        185 ms, faster than 46.78%   |    177 ms, faster than 51.96%
+// Memory Usage:  71.7 MB, less than   22.92%   |   71.3 MB, less than   23.31%
+{
+  const largestRectangleArea = (heights) => {
+    const stack = [];
+    let maxArea = 0;
+    for (let i = 0, h = heights[i]; i < heights.length; i++, h = heights[i]) {
+      let start = i;
+      while (stack.length && stack[stack.length - 1][1] > h) {
+        const [index, height] = stack.pop();
+        maxArea = Math.max(maxArea, height * (i - index));
+        start = index;
+      }
+      stack.push([start, h]);
+    }
+    for (const [i, h] of stack)  maxArea = Math.max(maxArea, h * (heights.length - i));
+    return maxArea;
+  };
+}
+//
+// Runtime:        160 ms, faster than 64.21%   |    150 ms, faster than 72.45%
+// Memory Usage:  70.4 MB, less than   25.35%   |   70.4 MB, less than   24.96%
+const largestRectangleArea = (heights) => {
+  heights.push(0);
+  let stack = [], maxArea = 0;
+  for (let i = 0, h = heights[i]; i < heights.length; i++, h = heights[i]) {
+    let start = i;
+    while (stack.length && stack[stack.length - 1][1] > h) {
+      const [index, height] = stack.pop();
+      maxArea = Math.max(maxArea, height * (i - index));
+      start = index;
+    }
+    stack.push([start, h]);
+  }
+  return maxArea;
+};
 // **************************************************************************************************************** //
 
 console.log(largestRectangleArea([2, 1, 5, 6, 2, 3]));
