@@ -6,7 +6,40 @@
 //
 /** @param {string} s **/ /** @param {string} t **/ /** @return {string} **/
 //
-const minWindow = (s, t) => {};
+// O(n) time, O(n) space
+// Runtime:      102 ms, faster than 90.07%   |    162 ms, faster than 50.63%   |     90 ms, faster than 96.67%
+// Memory Usage:  45 MB, less than   79.67%   |   45.7 MB, less than   62.04%   |   45.6 MB, less than   64.52%
+const minWindow = (s, t) => {
+  if (!t.length) return '';
+
+  const countT = {}; /* Object.fromEntries(Array.from({ length: t.length }, (v, i) => [t[i], 1])) */
+  for (const c of t) countT[c] = countT[c] + 1 || 1;
+  let l = 0,  res = [], resLen = Infinity, have = 0;
+
+  for (let r = 0, c = s[r]; r < s.length; r++, c = s[r]) {
+    if (c in countT) {
+      countT[c]--;
+      if (countT[c] >= 0) have++;
+    }
+
+    while (have == t.length) {
+      // update result
+      if (r - l + 1 < resLen) {
+        res = [l, r]
+        resLen = r - l + 1;
+      }
+
+      if (s[l] in countT) {
+        // pop from the left of window
+        if (countT[s[l]] === 0) have--;
+        countT[s[l]]++;
+      }
+      l++;
+    }
+  }
+
+  return s.slice(res[0], res[1] + 1);
+};
 // **************************************************************************************************************** //
 
 console.log(minWindow('ADOBECODEBANC', 'ABC'));
