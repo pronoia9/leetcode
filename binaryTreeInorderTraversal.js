@@ -1,4 +1,4 @@
-// *****************************************   94. Binary Tree Inorder Traversal   **************************************** //
+// *************************************   94. Binary Tree Inorder Traversal   ************************************ //
 // Given the root of a binary tree, return the inorder traversal of its nodes' values.
 // https://leetcode.com/problems/binary-tree-inorder-traversal/
 //
@@ -52,7 +52,7 @@ const inorderTraversal = (root) => {
   }
   return res;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 // console.log(inorderTraversal([1, null, 2, 3]));
 // console.log(inorderTraversal([]));
