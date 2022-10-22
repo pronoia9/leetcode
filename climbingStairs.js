@@ -1,4 +1,4 @@
-// ***********************************************   70. Climbing Stairs   ************************************************ //
+// *******************************************   70. Climbing Stairs   ******************************************** //
 // You are climbing a staircase. It takes n steps to reach the top.
 // Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
 // https://leetcode.com/problems/climbing-stairs/
@@ -41,8 +41,8 @@
   };
 }
 //
-// Runtime:         76 ms, faster than 66.43%   |    105 ms, faster than 16.69%   |   
-// Memory Usage:  41.5 MB, less than   87.67%   |   41.5 MB, less than   93.05%   |   
+// Runtime:         76 ms, faster than 66.43%   |    105 ms, faster than 16.69%
+// Memory Usage:  41.5 MB, less than   87.67%   |   41.5 MB, less than   93.05%
 const climbStairs = (n) => {
   if (n <= 2) return n;
 
