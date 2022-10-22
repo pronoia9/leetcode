@@ -1,4 +1,4 @@
-// *********************************************   217. Contains Duplicate   ********************************************** //
+// ******************************************   217. Contains Duplicate   ***************************************** //
 // Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 // https://leetcode.com/problems/contains-duplicate/
 //
@@ -16,7 +16,7 @@
 // Runtime:        129 ms, faster than 60.50%
 // Memory Usage:  50.8 MB, less than   63.20%
 const containsDuplicate = (nums) => nums.length !== new Set(nums).size;
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(containsDuplicate([1, 2, 3, 1]));
 console.log(containsDuplicate([1, 2, 3, 4]));
