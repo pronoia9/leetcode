@@ -1,4 +1,4 @@
-// ******************************************   1108. Defanging an IP Address   ******************************************* //
+// ***************************************   1108. Defanging an IP Address   ************************************** //
 // Given a valid (IPv4) IP address, return a defanged version of that IP address.
 // A defanged IP address replaces every period "." with "[.]".
 // https://leetcode.com/problems/defanging-an-ip-address/
@@ -6,7 +6,7 @@
 // Runtime:         68 ms, faster than 83.67%
 // Memory Usage:  41.9 MB, less than   57.87%
 const defangIPaddr = (address) => address.replaceAll('.', '[.]');
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(defangIPaddr('1.1.1.1'));
 console.log(defangIPaddr('255.100.50.0'));
