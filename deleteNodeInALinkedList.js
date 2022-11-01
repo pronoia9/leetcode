@@ -1,4 +1,4 @@
-// ****************************************   237. Delete Node in a Linked List   ***************************************** //
+// *************************************   237. Delete Node in a Linked List   ************************************ //
 // Write a function to delete a node in a singly-linked list. You will not be given access to the head of the list, instead you will be given access to the node to be deleted directly.
 // It is guaranteed that the node to be deleted is not a tail node in the list.
 // https://leetcode.com/problems/delete-node-in-a-linked-list/
@@ -11,7 +11,8 @@ const deleteNode = (node) => {
   node.val = node.next.val;
   node.next = node.next.next;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
+
 const ls1 = new ListNode(4, new ListNode(5, new ListNode(1, new ListNode(9, null)))), ls2 = new ListNode(4, new ListNode(5, new ListNode(1, new ListNode(9, null))));
 const del1 = ls1.next, del2 = ls2.next.next;
 
