@@ -1,6 +1,7 @@
-// **************************************   83. Remove Duplicates from Sorted List   ************************************** //
+// **********************************   83. Remove Duplicates from Sorted List   ********************************** //
 // Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
 // https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+//
 function ListNode(val, next) {(this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next);}
 const list = (arr) => {
   let list = new ListNode(),
@@ -45,7 +46,7 @@ const deleteDuplicates = (head) => {
   }
   return head;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(deleteDuplicates(list([1, 1, 2])));
 console.log(deleteDuplicates(list([1, 1, 2, 3, 3])));
