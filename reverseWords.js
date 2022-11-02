@@ -1,4 +1,4 @@
-// ****************************************   557. Reverse Words in a String III   **************************************** //
+// ************************************   557. Reverse Words in a String III   ************************************ //
 // Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
 // https://leetcode.com/problems/reverse-words-in-a-string-iii/
 //
@@ -17,7 +17,7 @@
 // Runtime:        115 ms, faster than 39.34%   |     73 ms, faster than 96.78%
 // Memory Usage:  48.2 MB, less than   82.42%   |   48.1 MB, less than   89.69%
 const reverseWords = (s) => s.split(' ').map((str) => str.split('').reverse().join('')).join(' ');
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(reverseWords("Let's take LeetCode contest"));
 console.log(reverseWords('God Ding'));
