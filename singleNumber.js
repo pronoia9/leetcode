@@ -1,4 +1,4 @@
-// ************************************************   136. Single Number   ************************************************ //
+// ********************************************   136. Single Number   ******************************************** //
 // Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
 // You must implement a solution with a linear runtime complexity and use only constant extra space.
 // https://leetcode.com/problems/single-number/
@@ -24,9 +24,7 @@
 {
   const singleNumber = (nums) => nums.find((num) => nums.indexOf(num) === nums.lastIndexOf(num));
 }
-//
-const singleNumber = (nums) => {}
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(singleNumber([2, 2, 1]));
 console.log(singleNumber([4, 1, 2, 1, 2]));
