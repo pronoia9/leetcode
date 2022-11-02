@@ -1,10 +1,10 @@
-// ***********************************************   13. Roman to Integer   *********************************************** //
+// *******************************************   13. Roman to Integer   ******************************************* //
 // Roman numerals are represented by seven different symbols: I (1), V (5), X (10), L (50), C (100), D (500) and M (1000).
 // Given a roman numeral, convert it to an integer.
 // https://leetcode.com/problems/roman-to-integer/
 //
-// Runtime:       269 ms,   faster than   12.91%
-// Memory Usage:  47.1 MB,  less than     64.79%
+// Runtime:       269 ms,  faster than 12.91%
+// Memory Usage:  47.1 MB, less than   64.79%
 {
   var romanToInt = function (s) {
     let count = 0;
@@ -66,8 +66,8 @@
   };
 }
 //
-// Runtime:       173 ms,   faster than   57.91%
-// Memory Usage:  49 MB,    less than     18.17%
+// Runtime:       173 ms, faster than 57.91%
+// Memory Usage:  49 MB,  less than   18.17%
 {
   var romanToInt = function (s) {
     let matches = s.match(/(I[VX])|(X[LC])|(C[DM])|([IVXLCDM])/g);
@@ -105,8 +105,8 @@
   };
 }
 //
-// Runtime:       139 ms,   faster than   79.12%   |   140 ms,    faster than   78.43%   |   155 ms,    faster than   69.17%
-// Memory Usage:  47.7 MB,  less than     41.86%   |   48.1 MB,   less than     32.82%   |   48.8 MB,   less than     22.30%
+// Runtime:       139 ms,  faster than 79.12%   |   140 ms,  faster than 78.43%   |   155 ms,  faster than 69.17%
+// Memory Usage:  47.7 MB, less than   41.86%   |   48.1 MB, less than   32.82%   |   48.8 MB, less than   22.30%
 export default function romanToInt(s) {
   return s
     .match(/(I[VX])|(X[LC])|(C[DM])|([IVXLCDM])/g)
@@ -179,8 +179,8 @@ export default function romanToInt(s) {
   };
 }
 //
-// Runtime:       188 ms,   faster than   47.93%   |   160 ms,   faster than   66.50%   |   180 ms,   faster than   53.29%
-// Memory Usage:  48.2 MB,  less than     30.88%   |   48.4 MB,  less than     28.94%   |   48.2 MB,  less than     30.88%
+// Runtime:       188 ms,  faster than 47.93%   |   160 ms,   faster than 66.50%   |   180 ms,  faster than 53.29%
+// Memory Usage:  48.2 MB, less than   30.88%   |   48.4 MB,  less than   28.94%   |   48.2 MB, less than   30.88%
 {
   var romanToInt = function (s) {
     return s.match(/(I[VX])|(X[LC])|(C[DM])|([IVXLCDM])/g).reduce((prev, curr) => {
@@ -215,4 +215,4 @@ export default function romanToInt(s) {
     }, 0);
   };
 }
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
