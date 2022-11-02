@@ -1,4 +1,4 @@
-// ******************************************   171. Excel Sheet Column Number   ****************************************** //
+// **************************************   171. Excel Sheet Column Number   ************************************** //
 // Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number.
 // For example:
 // A -> 1
@@ -39,7 +39,7 @@
 // Runtime:         79 ms, faster than 86.38%
 // Memory Usage:  43.5 MB, less than  62.16%
 const titleToNumber = (columnTitle) => columnTitle.split('').reduce((total, char) => total * 26 + (char.charCodeAt(0) - 64), 0)
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 // console.log('A'.charCodeAt(0) - 1);
 // console.log(total * 26);
