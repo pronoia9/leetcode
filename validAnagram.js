@@ -1,4 +1,4 @@
-// ************************************************   242. Valid Anagram   ************************************************ //
+// ********************************************   242. Valid Anagram   ******************************************** //
 // Given two strings s and t, return true if t is an anagram of s, and false otherwise.
 // An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
 // https://leetcode.com/problems/valid-anagram/
@@ -28,7 +28,7 @@ const isAnagram = (s, t) => s.split('').sort().join('') === t.split('').sort().j
   const isAnagram = (s, t) =>
     s.length !== t.length ? false : s.split('').sort().join('') === t.split('').sort().join('');
 }
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(isAnagram('anagram', 'nagaram'));
 console.log(isAnagram('rat', 'car'));
