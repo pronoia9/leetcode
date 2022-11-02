@@ -1,4 +1,4 @@
-// *************************************************   36. Valid Sudoku   ************************************************* //
+// *********************************************   36. Valid Sudoku   ********************************************* //
 // Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
 // Each row must contain the digits 1-9 without repetition.
 // Each column must contain the digits 1-9 without repetition.
@@ -12,8 +12,8 @@
 // board[i].length == 9
 // board[i][j] is a digit 1-9 or '.'.
 //
-// Runtime:      127 ms,  faster than 32.15%7   |   127 ms,  faster than 32.15%   |   89 ms,   faster than 77.19%   |   121 ms,  faster than 37.85%
-// Memory Usage: 44.4 MB, less than   94.86%7   |   45.3 MB, less than   56.82%   |   44.7 MB, less than   80.44%   |   44.8 MB, less than   75.78%
+// Runtime:      127 ms,  faster than 32.15%7   |   89 ms,   faster than 77.19%   |   121 ms,  faster than 37.85%
+// Memory Usage: 44.4 MB, less than   94.86%7   |   44.7 MB, less than   80.44%   |   44.8 MB, less than   75.78%
 {
   const isValidSudoku = (board) => {
     for (let row = 0; row < 9; row++) {
@@ -67,7 +67,7 @@ const isValidSudoku = (board) => {
 
   return true;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(
   isValidSudoku([
