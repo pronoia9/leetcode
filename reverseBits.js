@@ -1,4 +1,4 @@
-// ************************************************   190. Reverse Bits   ************************************************* //
+// ********************************************   190. Reverse Bits   ********************************************* //
 // Reverse bits of a given 32 bits unsigned integer.
 // Note:
 // Note that in some languages, such as Java, there is no unsigned integer type. In this case, both input and output will be given as a signed integer type. They should not affect your implementation, as the integer's internal binary representation is the same, whether it is signed or unsigned.
@@ -8,7 +8,7 @@
 // Runtime:        119 ms, faster than 27.83%   |    103 ms, faster than 51.40%   |   99 ms, faster than 58.37%
 // Memory Usage:  44.6 MB, less than   11.78%   |   44.2 MB, less than   50.31%   |   44 MB, less than   59.77%
 const reverseBits = (n) => parseInt(n.toString(2).split('').reverse().join('').padEnd(32, '0'), 2);
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(reverseBits(00000010100101000001111010011100));
 console.log(reverseBits(11111111111111111111111111111101));
