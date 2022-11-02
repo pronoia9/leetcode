@@ -1,15 +1,7 @@
-// *********************************************   206. Reverse Linked List   ********************************************* //
+// *****************************************   206. Reverse Linked List   ***************************************** //
 // Given the head of a singly linked list, reverse the list, and return the reversed list.
 // https://leetcode.com/problems/reverse-linked-list/
 function ListNode(val, next) { (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next); }
-const list = (arr) => {
-  let list = new ListNode(), curr = list;
-  for (let i = 0; i < arr.length; i++) {
-    curr.val = arr[i];
-    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
-  }
-  return list;
-};
 //
 // Runtime:       69 ms, faster than 91.06%
 // Memory Usage:  44 MB, less than   72.62%
@@ -22,7 +14,7 @@ const reverseList = (head) => {
   }
   return list;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 const l1 = list([1, 2, 3, 4, 5]), l2 = list([1, 2]), l3 = list([]);
 
@@ -47,3 +39,13 @@ console.log(reverseList(l3));
 // -5000 <= Node.val <= 5000
 
 // Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
+
+function list (arr) {
+  let list = new ListNode(),
+    curr = list;
+  for (let i = 0; i < arr.length; i++) {
+    curr.val = arr[i];
+    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
+  }
+  return list;
+};
