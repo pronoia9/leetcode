@@ -1,4 +1,4 @@
-// ************************************************   202. Happy Number   ************************************************* //
+// ********************************************   202. Happy Number   ********************************************* //
 // Write an algorithm to determine if a number n is happy.
 // A happy number is a number defined by the following process:
 // Starting with any positive integer, replace the number by the sum of the squares of its digits.
@@ -34,7 +34,7 @@ const isHappy = (n) => {
   }
   return n === 1;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(isHappy(19));
 console.log(isHappy(2));
