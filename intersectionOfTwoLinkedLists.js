@@ -1,4 +1,4 @@
-// ***************************************   160. Intersection of Two Linked Lists   ************************************** //
+// **********************************   160. Intersection of Two Linked Lists   *********************************** //
 // Given the heads of two singly linked-lists headA and headB, return the node at which the two lists intersect. If the two linked lists have no intersection at all, return null.
 // For example, the following two linked lists begin to intersect at node c1:
 // https://assets.leetcode.com/uploads/2021/03/05/160_statement.png
@@ -18,15 +18,6 @@
 function ListNode(val, next) {
   (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next);
 }
-const list = (arr) => {
-  let list = new ListNode(),
-    curr = list;
-  for (let i = 0; i < arr.length; i++) {
-    curr.val = arr[i];
-    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
-  }
-  return list;
-};
 //
 // Runtime: 1139 ms, faster than 6.01%
 // Memory Usage: 49.9 MB, less than 62.24%
@@ -56,11 +47,11 @@ const getIntersectionNode = (headA, headB) => {
   }
   return a;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(getIntersectionNode(list([4, 1, 8, 4, 5]), list([5, 6, 1, 8, 4, 5])));
-// console.log(getIntersectionNode(list([1, 9, 1, 2, 4]), list([3, 2, 4])));
-// console.log(getIntersectionNode(list([2, 6, 4]), list([1, 5])));
+console.log(getIntersectionNode(list([1, 9, 1, 2, 4]), list([3, 2, 4])));
+console.log(getIntersectionNode(list([2, 6, 4]), list([1, 5])));
 
 // Example 1:
 // https://assets.leetcode.com/uploads/2021/03/05/160_example_1_1.png
@@ -94,3 +85,13 @@ console.log(getIntersectionNode(list([4, 1, 8, 4, 5]), list([5, 6, 1, 8, 4, 5]))
 // intersectVal == listA[skipA] == listB[skipB] if listA and listB intersect.
 
 // Follow up: Could you write a solution that runs in O(m + n) time and use only O(1) memory?
+
+function list (arr) {
+  let list = new ListNode(),
+    curr = list;
+  for (let i = 0; i < arr.length; i++) {
+    curr.val = arr[i];
+    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
+  }
+  return list;
+};
