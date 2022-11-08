@@ -1,9 +1,9 @@
-// ********************************   3. Longest Substring Without Repeating Characters   ********************************* //
+// ****************************   3. Longest Substring Without Repeating Characters   ***************************** //
 // Given a string s, find the length of the longest substring without repeating characters.
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
 //
-// Runtime:       104 ms,   faster than   77.99%
-// Memory Usage:  47.3 MB,  less than     67.93%
+// Runtime:       104 ms,  faster than 77.99%
+// Memory Usage:  47.3 MB, less than   67.93%
 export default function lengthOfLongestSubstring (s) {
   let longest = '',
     result = '';
@@ -17,4 +17,4 @@ export default function lengthOfLongestSubstring (s) {
   }
   return result.length;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
