@@ -1,4 +1,4 @@
-// ******************************************   1710. Maximum Units on a Truck   ****************************************** //
+// **************************************   1710. Maximum Units on a Truck   ************************************** //
 // You are assigned to put some amount of boxes onto one truck. You are given a 2D array boxTypes, where boxTypes[i] = [numberOfBoxesi, numberOfUnitsPerBoxi]:
 // numberOfBoxesi is the number of boxes of type i.
 // numberOfUnitsPerBoxi is the number of units in each box of the type i.
@@ -38,7 +38,7 @@ const maximumUnits = (boxTypes, truckSize) => {
 
   return units;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(maximumUnits([[1, 3], [2, 2], [3, 1]], 4));
 console.log(maximumUnits([[5, 10], [2, 5], [4, 7], [3, 9]],10));
