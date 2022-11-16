@@ -1,18 +1,10 @@
-// ********************************************   21. Merge Two Sorted Lists   ******************************************** //
+// ****************************************   21. Merge Two Sorted Lists   **************************************** //
 // You are given the heads of two sorted linked lists list1 and list2.
 // Merge the two lists in a one sorted list. The list should be made by splicing together the nodes of the first two lists.
 // Return the head of the merged linked list.
 // https://leetcode.com/problems/merge-two-sorted-lists/
 // Definition for singly-linked list.
 function ListNode(val, next) { (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next); }
-const list = (arr) => {
-  let list = new ListNode(), curr = list;
-  for (let i = 0; i < arr.length; i++) {
-    curr.val = arr[i];
-    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
-  }
-  return list;
-};
 //
 // Runtime:        126 ms, faster than 17.11%
 // Memory Usage:  44.4 MB, less than   24.40%
@@ -55,7 +47,7 @@ const mergeTwoLists = (list1, list2) => {
 
   return list.next;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(mergeTwoLists(list([1, 2, 4]), list([1, 3, 4])));
 console.log(mergeTwoLists(list([]), list([])));
@@ -77,3 +69,13 @@ console.log(mergeTwoLists(list([]), list([0])));
 // The number of nodes in both lists is in the range [0, 50].
 // -100 <= Node.val <= 100
 // Both list1 and list2 are sorted in non-decreasing order.
+
+function list (arr) {
+  let list = new ListNode(),
+    curr = list;
+  for (let i = 0; i < arr.length; i++) {
+    curr.val = arr[i];
+    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
+  }
+  return list;
+};
