@@ -1,4 +1,4 @@
-// **********************************************   28. Implement strStr()   ********************************************** //
+// ******************************************   28. Implement strStr()   ****************************************** //
 // Implement strStr().
 // Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 // Clarification:
@@ -19,15 +19,15 @@
   };
 }
 //
-// Runtime:       58 ms,    faster than 94.83 %
-// Memory Usage:  41.5 MB,  less than   94.65%
+// Runtime:       58 ms,   faster than 94.83%
+// Memory Usage:  41.5 MB, less than   94.65%
 const strStr = (haystack, needle) => {
   for (let i = 0; i < haystack.length; i++) {
     if (haystack[i] === needle[0] && haystack.slice(i, i + needle.length) == needle) return i;
   }
   return -1;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(strStr('hello', 'll')); //  2
 console.log(strStr('aaaaa', 'bba')); // -1
