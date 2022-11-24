@@ -1,18 +1,9 @@
-// ********************************************   234. Palindrome Linked List   ******************************************* //
+// ***************************************   234. Palindrome Linked List   **************************************** //
 // Given the head of a singly linked list, return true if it is a palindrome.
 // https://leetcode.com/problems/palindrome-linked-list/
 function ListNode(val, next) {
   (this.val = val === undefined ? 0 : val), (this.next = next === undefined ? null : next);
 }
-const list = (arr) => {
-  let list = new ListNode(),
-    curr = list;
-  for (let i = 0; i < arr.length; i++) {
-    curr.val = arr[i];
-    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
-  }
-  return list;
-};
 //
 // Runtime:        208 ms, faster than 60.63%
 // Memory Usage:  92.7 MB, less than    6.27%
@@ -77,7 +68,7 @@ const list = (arr) => {
     return true;
   };
 }
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(isPalindrome(list([1, 2, 2, 1])));
 console.log(isPalindrome(list([1, 2])));
@@ -99,3 +90,13 @@ console.log(isPalindrome(list([ 8, 0, 7, 1, 7, 7, 9, 7, 5, 2, 9, 1, 7, 3, 7, 0, 
 // 0 <= Node.val <= 9
 
 // Follow up: Could you do it in O(n) time and O(1) space?
+
+function list (arr) {
+  let list = new ListNode(),
+    curr = list;
+  for (let i = 0; i < arr.length; i++) {
+    curr.val = arr[i];
+    if (i !== arr.length - 1) (curr.next = new ListNode()), (curr = curr.next);
+  }
+  return list;
+};
