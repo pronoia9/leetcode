@@ -1,4 +1,4 @@
-// **********************************************   118. Pascal's Triangle   ********************************************** //
+// ******************************************   118. Pascal's Triangle   ****************************************** //
 // Given an integer numRows, return the first numRows of Pascal's triangle.
 // In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
 // https://leetcode.com/problems/pascals-triangle/
@@ -16,7 +16,7 @@ const generate = (numRows) => {
   }
   return res;
 };
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(generate(5));
 console.log(generate(1));
