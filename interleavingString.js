@@ -1,4 +1,4 @@
-// *********************************************   97. Interleaving String   ********************************************** //
+// *****************************************   97. Interleaving String   ****************************************** //
 // Given strings s1, s2, and s3, find whether s3 is formed by an interleaving of s1 and s2.
 // An interleaving of two strings s and t is a configuration where they are divided into non-empty substrings such that:
 // s = s1 + s2 + ... + sn
@@ -9,7 +9,7 @@
 // https://leetcode.com/problems/interleaving-string/
 //
 const isInterleave = (s1, s2, s3) => {};
-// ************************************************************************************************************************ //
+// **************************************************************************************************************** //
 
 console.log(isInterleave('aabcc', 'dbbca', 'aadbbcbcac'));
 console.log(isInterleave('aabcc', 'dbbca', 'aadbbbaccc'));
